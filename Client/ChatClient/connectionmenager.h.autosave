@@ -1,0 +1,19 @@
+#ifndef CONNECTIONMENAGER_H
+#define CONNECTIONMENAGER_H
+
+#include <QTcpServer>
+
+class Model;
+
+class ConnectionMenager : public QTcpServer
+{
+public:
+    ConnectionMenager();
+    
+    Model *model();
+    
+private:
+    Model *_model;
+};
+
+#endif // CONNECTIONMENAGER_H

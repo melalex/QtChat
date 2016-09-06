@@ -4,7 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui\
+            network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -13,8 +14,51 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        authorization.cpp
+    user.cpp \
+    message.cpp \
+    group.cpp \
+    authorization.cpp \
+    registration.cpp \
+    contacts.cpp \
+    addcontactdialog.cpp \
+    chatdialog.cpp \
+    groupchatdialog.cpp \
+    connectionmenager.cpp \
+    model.cpp \
+    authorizationpresenter.cpp \
+    registrationpresenter.cpp \
+    addcontactdialogpresenter.cpp \
+    chatdialogpresenter.cpp \
+    contactspresenter.cpp \
+    groupchatdialogpresenter.cpp
 
-HEADERS  += authorization.h
+HEADERS  += \
+    user.h \
+    message.h \
+    group.h \
+    authorization.h \
+    registration.h \
+    contacts.h \
+    addcontactdialog.h \
+    chatdialog.h \
+    groupchatdialog.h \
+    connectionmenager.h \
+    model.h \
+    authorizationpresenter.h \
+    registrationpresenter.h \
+    addcontactdialogpresenter.h \
+    chatdialogpresenter.h \
+    contactspresenter.h \
+    groupchatdialogpresenter.h
 
-FORMS    += authorization.ui
+FORMS    += \
+    authorization.ui \
+    registration.ui \
+    contacts.ui \
+    addcontactdialog.ui \
+    chatdialog.ui \
+    groupchatdialog.ui
+
+RESOURCES += \
+    resources/resources.qrc \
+    resources/images/images.qrc

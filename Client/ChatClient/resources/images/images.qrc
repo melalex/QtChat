@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>grey_new_seo-26-512.png</file>
+        <file>person_add-512.png</file>
+        <file>person_cancel-512.png</file>
+        <file>user_woman_add-512.png</file>
+        <file>user_group_users_delete_close-512.png</file>
+        <file>w256h2561380453921Search256x25632.png</file>
+    </qresource>
+</RCC>
