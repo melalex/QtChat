@@ -231,6 +231,7 @@ Makefile: ..\ChatClient\ChatClient.pro ..\..\..\Qt\5.7\msvc2015\mkspecs\win32-ms
 		..\..\..\Qt\5.7\msvc2015\lib\qtmaind.prl \
 		..\..\..\Qt\5.7\msvc2015\lib\Qt5Widgets.prl \
 		..\..\..\Qt\5.7\msvc2015\lib\Qt5Gui.prl \
+		..\..\..\Qt\5.7\msvc2015\lib\Qt5Network.prl \
 		..\..\..\Qt\5.7\msvc2015\lib\Qt5Core.prl
 	$(QMAKE) -spec win32-msvc2015 "CONFIG+=debug" "CONFIG+=qml_debug" -o Makefile ..\ChatClient\ChatClient.pro
 ..\..\..\Qt\5.7\msvc2015\mkspecs\features\spec_pre.prf:
@@ -391,6 +392,7 @@ Makefile: ..\ChatClient\ChatClient.pro ..\..\..\Qt\5.7\msvc2015\mkspecs\win32-ms
 ..\..\..\Qt\5.7\msvc2015\lib\qtmaind.prl:
 ..\..\..\Qt\5.7\msvc2015\lib\Qt5Widgets.prl:
 ..\..\..\Qt\5.7\msvc2015\lib\Qt5Gui.prl:
+..\..\..\Qt\5.7\msvc2015\lib\Qt5Network.prl:
 ..\..\..\Qt\5.7\msvc2015\lib\Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -spec win32-msvc2015 "CONFIG+=debug" "CONFIG+=qml_debug" -o Makefile ..\ChatClient\ChatClient.pro

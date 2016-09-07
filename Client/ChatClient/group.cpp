@@ -4,8 +4,8 @@
 #include "user.h"
 #include "message.h"
 
-Group::Group(quint32 id, QList<User *> *members, QList<Message *> *messages) :
-    _id(id), _members(members), _messages(messages)
+Group::Group(quint32 id, QList<User *> *members, QObject *parent,  QList<Message *> *messages) :
+    QObject(parent), _id(id), _members(members), _messages(messages)
 {
 
 }
@@ -43,5 +43,14 @@ void Group::removeMember(User *user)
 {
     _members->removeOne(user);
 
+    emit memberRemoved();
+
     delete user;
+}
+
+void Group::addMessage(Message *message)
+{
+    _messages->append(message);
+
+    emit messageAdded(message);
 }

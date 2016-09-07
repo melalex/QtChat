@@ -3,9 +3,6 @@
 
 #include <QWidget>
 
-class Registration;
-class Contacts;
-
 namespace Ui {
 class Authorization;
 }
@@ -18,7 +15,9 @@ public:
     explicit Authorization(QWidget *parent = 0);
     ~Authorization();
 
-    void setContactsWindow(Contacts *contacts);
+signals:
+    void signUp();
+    void signIn(QString login, QString password);
 
 private slots:
     void on_pushButton_clicked();
@@ -27,10 +26,6 @@ private slots:
 
 private:
     Ui::Authorization *ui;
-    Registration *_registrationWindow = nullptr;
-    Contacts *_contacts;
-
-    Registration *getRegistrationWindow();
 };
 
 #endif // AUTHORIZATION_H

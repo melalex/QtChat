@@ -1,17 +1,21 @@
-#include "authorization.h"
-#include "contacts.h"
+#include "authorizationpresenter.h"
+#include "contactspresenter.h"
+#include "connectionmenager.h"
 
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    Authorization w;
-    w.show();
 
-    Contacts contacts;
+    AuthorizationPresenter authorizationPresenter;
+    authorizationPresenter.showWindow();
 
-    w.setContactsWindow(&contacts);
+    ContactsPresenter contacts;
+    ConnectionMenager connectionMenager;
+
+    authorizationPresenter.setContacts(&contacts);
+    authorizationPresenter.setConnectionMenager(&connectionMenager);
 
     return a.exec();
 }

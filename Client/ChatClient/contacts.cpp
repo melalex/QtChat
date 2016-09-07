@@ -14,17 +14,7 @@ Contacts::~Contacts()
     delete ui;
 }
 
-
-AddContactDialog *Contacts::getAddContactDialog()
-{
-    if (!_addContactDialog)
-    {
-        _addContactDialog = new AddContactDialog(this);
-    }
-    return _addContactDialog;
-}
-
 void Contacts::on_pushButton_17_clicked()
 {
-    getAddContactDialog()->show();
+    addContact();
 }

@@ -1,13 +1,13 @@
 #ifndef REGISTRATION_H
 #define REGISTRATION_H
 
-#include <QWidget>
+#include <QDialog>
 
 namespace Ui {
 class Registration;
 }
 
-class Registration : public QWidget
+class Registration : public QDialog
 {
     Q_OBJECT
 

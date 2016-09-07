@@ -1,7 +1,5 @@
 #include "authorization.h"
 #include "ui_authorization.h"
-#include "registration.h"
-#include "contacts.h"
 
 Authorization::Authorization(QWidget *parent) :
     QWidget(parent),
@@ -12,32 +10,15 @@ Authorization::Authorization(QWidget *parent) :
 
 Authorization::~Authorization()
 {
-    delete _registrationWindow;
-
     delete ui;
-}
-
-void Authorization::setContactsWindow(Contacts *contacts)
-{
-    _contacts = contacts;
-}
-
-Registration *Authorization::getRegistrationWindow()
-{
-    if (!_registrationWindow)
-    {
-        _registrationWindow = new Registration();
-    }
-    return _registrationWindow;
 }
 
 void Authorization::on_pushButton_clicked()
 {
-    _contacts->show();
-    this->close();
+    signIn(ui->lineEdit->text(), ui->label_2->text());
 }
 
 void Authorization::on_pushButton_2_clicked()
 {
-    getRegistrationWindow()->show();
+    signUp();
 }

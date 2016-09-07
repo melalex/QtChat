@@ -17,16 +17,14 @@ public:
     explicit Contacts(QWidget *parent = 0);
     ~Contacts();
 
-
+signals:
+    void addContact();
 
 private slots:
     void on_pushButton_17_clicked();
 
 private:
     Ui::Contacts *ui;
-    AddContactDialog *_addContactDialog = nullptr;
-
-    AddContactDialog *getAddContactDialog();
 };
 
 #endif // CONTACTS_H

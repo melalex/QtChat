@@ -6,6 +6,7 @@ GroupChatDialog::GroupChatDialog(QWidget *parent) :
     ui(new Ui::GroupChatDialog)
 {
     ui->setupUi(this);
+    setAttribute(Qt::WA_DeleteOnClose);
 }
 
 GroupChatDialog::~GroupChatDialog()
