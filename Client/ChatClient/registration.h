@@ -15,6 +15,14 @@ public:
     explicit Registration(QWidget *parent = 0);
     ~Registration();
 
+    void clearInput();
+
+signals:
+    void registerANewUser(QString login, QString password, QString confirmPassword);
+
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::Registration *ui;
 };

@@ -4,6 +4,8 @@
 #include "registrationpresenter.h"
 #include "contactspresenter.h"
 
+#include <QMessageBox>
+
 AuthorizationPresenter::AuthorizationPresenter(QObject *parent) : QObject(parent)
 {
     _authorization = new Authorization();
@@ -33,6 +35,9 @@ void AuthorizationPresenter::setContacts(ContactsPresenter *contacts)
 void AuthorizationPresenter::setConnectionMenager(ConnectionMenager *connectionMenager)
 {
     _connectionMenager = connectionMenager;
+
+    connect(_connectionMenager, SIGNAL(logged()), this, SLOT(logged()));
+    connect(_connectionMenager, SIGNAL(notLogged()), this, SLOT(notLogged()));
 }
 
 RegistrationPresenter *AuthorizationPresenter::getRegistrationWindow()
@@ -51,6 +56,32 @@ void AuthorizationPresenter::signUp()
 
 void AuthorizationPresenter::signIn(QString login, QString password)
 {
+    if(!login.isEmpty() && !password.isEmpty())
+    {
+        _connectionMenager->signIn(login, password);
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Fields cannot be blank");
+        msgBox.setIcon(QMessageBox::Warning);
+        msgBox.exec();
+    }
+}
+
+void AuthorizationPresenter::logged()
+{
+    _contacts->setConnectionMenager(_connectionMenager);
     _contacts->showWindow();
     _authorization->close();
+}
+
+void AuthorizationPresenter::notLogged()
+{
+    _authorization->clearInput();
+
+    QMessageBox msgBox;
+    msgBox.setText("Incorrect login or password");
+    msgBox.setIcon(QMessageBox::Warning);
+    msgBox.exec();
 }

@@ -27,6 +27,9 @@ public slots:
     void signUp();
     void signIn(QString login, QString password);
 
+    void logged();
+    void notLogged();
+
 private:
     Authorization *_authorization;
     ConnectionMenager *_connectionMenager;

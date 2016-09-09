@@ -30,7 +30,9 @@ SOURCES += main.cpp\
     addcontactdialogpresenter.cpp \
     chatdialogpresenter.cpp \
     contactspresenter.cpp \
-    groupchatdialogpresenter.cpp
+    groupchatdialogpresenter.cpp \
+    chatsmodel.cpp \
+    groupchatsmodel.cpp
 
 HEADERS  += \
     user.h \
@@ -49,7 +51,9 @@ HEADERS  += \
     addcontactdialogpresenter.h \
     chatdialogpresenter.h \
     contactspresenter.h \
-    groupchatdialogpresenter.h
+    groupchatdialogpresenter.h \
+    chatsmodel.h \
+    groupchatsmodel.h
 
 FORMS    += \
     authorization.ui \

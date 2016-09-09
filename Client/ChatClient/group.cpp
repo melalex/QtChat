@@ -4,8 +4,8 @@
 #include "user.h"
 #include "message.h"
 
-Group::Group(quint32 id, QList<User *> *members, QObject *parent,  QList<Message *> *messages) :
-    QObject(parent), _id(id), _members(members), _messages(messages)
+Group::Group(quint32 id, QString name, QList<User *> *members, QObject *parent,  QList<Message *> *messages) :
+    QObject(parent), _id(id), _name(name), _members(members), _messages(messages)
 {
 
 }
@@ -22,6 +22,11 @@ Group::~Group()
 quint32 Group::getId()
 {
     return _id;
+}
+
+QString Group::getName()
+{
+    return _name;
 }
 
 QList<User *> *Group::getMembers()

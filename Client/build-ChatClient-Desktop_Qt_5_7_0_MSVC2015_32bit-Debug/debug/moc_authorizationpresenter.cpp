@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_AuthorizationPresenter_t {
-    QByteArrayData data[6];
-    char stringdata0[53];
+    QByteArrayData data[8];
+    char stringdata0[70];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -34,11 +34,13 @@ QT_MOC_LITERAL(1, 23, 6), // "signUp"
 QT_MOC_LITERAL(2, 30, 0), // ""
 QT_MOC_LITERAL(3, 31, 6), // "signIn"
 QT_MOC_LITERAL(4, 38, 5), // "login"
-QT_MOC_LITERAL(5, 44, 8) // "password"
+QT_MOC_LITERAL(5, 44, 8), // "password"
+QT_MOC_LITERAL(6, 53, 6), // "logged"
+QT_MOC_LITERAL(7, 60, 9) // "notLogged"
 
     },
     "AuthorizationPresenter\0signUp\0\0signIn\0"
-    "login\0password"
+    "login\0password\0logged\0notLogged"
 };
 #undef QT_MOC_LITERAL
 
@@ -48,7 +50,7 @@ static const uint qt_meta_data_AuthorizationPresenter[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -56,12 +58,16 @@ static const uint qt_meta_data_AuthorizationPresenter[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   24,    2, 0x0a /* Public */,
-       3,    2,   25,    2, 0x0a /* Public */,
+       1,    0,   34,    2, 0x0a /* Public */,
+       3,    2,   35,    2, 0x0a /* Public */,
+       6,    0,   40,    2, 0x0a /* Public */,
+       7,    0,   41,    2, 0x0a /* Public */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void, QMetaType::QString, QMetaType::QString,    4,    5,
+    QMetaType::Void,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -74,6 +80,8 @@ void AuthorizationPresenter::qt_static_metacall(QObject *_o, QMetaObject::Call _
         switch (_id) {
         case 0: _t->signUp(); break;
         case 1: _t->signIn((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
+        case 2: _t->logged(); break;
+        case 3: _t->notLogged(); break;
         default: ;
         }
     }
@@ -104,13 +112,13 @@ int AuthorizationPresenter::qt_metacall(QMetaObject::Call _c, int _id, void **_a
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 4;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 4)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 2;
+        _id -= 4;
     }
     return _id;
 }

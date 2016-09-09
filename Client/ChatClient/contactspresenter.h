@@ -5,6 +5,8 @@
 
 class AddContactDialogPresenter;
 class Contacts;
+class ConnectionMenager;
+class Model;
 
 class ContactsPresenter : public QObject
 {
@@ -15,13 +17,18 @@ public:
 
     void showWindow();
 
+    void setConnectionMenager(ConnectionMenager *connectionMenager);
+
 signals:
 
 public slots:
     void addContact();
+    void createGroup(QList<quint16> *indexes);
 
 private:
     Contacts *_contacts;
+    ConnectionMenager *_connectionMenager;
+    Model *_model;
     AddContactDialogPresenter *_addContactDialog = nullptr;
 
     AddContactDialogPresenter *getAddContactDialog();

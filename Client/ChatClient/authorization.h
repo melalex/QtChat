@@ -15,6 +15,8 @@ public:
     explicit Authorization(QWidget *parent = 0);
     ~Authorization();
 
+    void clearInput();
+
 signals:
     void signUp();
     void signIn(QString login, QString password);

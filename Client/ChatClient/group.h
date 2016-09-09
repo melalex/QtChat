@@ -13,10 +13,11 @@ class Group : public QObject
     Q_OBJECT
 
 public:
-    explicit Group(quint32 id, QList<User *> *members, QObject *parent = 0, QList<Message *> *messages = new QList<Message *>());
+    explicit Group(quint32 id, QString name, QList<User *> *members, QObject *parent = 0, QList<Message *> *messages = new QList<Message *>());
     ~Group();
 
     quint32 getId();
+    QString getName();
     QList<User *> *getMembers();
     QList<Message *> *getMessages();
 
@@ -31,6 +32,7 @@ signals:
 
 private:
     quint32 _id;
+    QString _name;
     QList<User *> *_members;
     QList<Message *> *_messages;
 };

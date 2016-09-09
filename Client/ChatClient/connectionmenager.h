@@ -2,8 +2,11 @@
 #define CONNECTIONMENAGER_H
 
 #include <QObject>
+#include <QList>
 
-class Model;
+class Group;
+class User;
+class Message;
 
 class ConnectionMenager : public QObject
 {
@@ -13,10 +16,35 @@ public:
     explicit ConnectionMenager(QObject *parent = 0);
     ~ConnectionMenager();
 
-    Model *model();
+    User *currentUser();
+
+    void signUp(QString login, QString password);
+    void signIn(QString login, QString password);
+
+    void addContact(User *user);
+    void createGroupChat(QList<User *> users, QString name);
+
+    void sendMessage(Message *message);
+
+    QList<Group *> *getChats();
+    QList<Group *> *getGroupChats();
+
+    QList<User *> *getPossibleContacts(QString loginPart);
+
+signals:
+    void logged();
+    void notLogged();
+
+    void registered();
+    void notRegistered();
+
+    void addChat(Group *chat);
+    void addGroupChat(Group *chat);
+
+    void addMessageToGroup(Message *message, quint32 groupId);
 
 private:
-    Model *_model;
+    User *_currentUser;
 };
 
 #endif // CONNECTIONMENAGER_H

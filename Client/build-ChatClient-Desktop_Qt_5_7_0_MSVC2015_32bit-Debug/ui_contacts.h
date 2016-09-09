@@ -31,7 +31,7 @@ class Ui_Contacts
 {
 public:
     QWidget *centralwidget;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
     QLabel *label;
     QTabWidget *tabWidget;
@@ -60,13 +60,13 @@ public:
         Contacts->resize(281, 505);
         centralwidget = new QWidget(Contacts);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
-        widget = new QWidget(centralwidget);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(10, 10, 261, 461));
-        verticalLayout = new QVBoxLayout(widget);
+        layoutWidget = new QWidget(centralwidget);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(10, 10, 261, 461));
+        verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        label = new QLabel(widget);
+        label = new QLabel(layoutWidget);
         label->setObjectName(QStringLiteral("label"));
         QFont font;
         font.setPointSize(14);
@@ -74,7 +74,7 @@ public:
 
         verticalLayout->addWidget(label);
 
-        tabWidget = new QTabWidget(widget);
+        tabWidget = new QTabWidget(layoutWidget);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
@@ -158,9 +158,6 @@ public:
         verticalLayout->addWidget(tabWidget);
 
         Contacts->setCentralWidget(centralwidget);
-        label->raise();
-        label->raise();
-        tabWidget->raise();
         menubar = new QMenuBar(Contacts);
         menubar->setObjectName(QStringLiteral("menubar"));
         menubar->setGeometry(QRect(0, 0, 281, 21));

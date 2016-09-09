@@ -4,6 +4,7 @@
 #include <QObject>
 
 class Registration;
+class ConnectionMenager;
 
 class RegistrationPresenter : public QObject
 {
@@ -14,14 +15,19 @@ public:
 
     void showWindow();
 
+    void setConnectionMenager(ConnectionMenager *connectionMenager);
+
 signals:
 
 public slots:
     void registerANewUser(QString login, QString password, QString confirmPassword);
 
+    void registered();
+    void notRegistered();
+
 private:
     Registration *_registration;
-
+    ConnectionMenager *_connectionMenager;
 };
 
 #endif // REGISTRATIONPRESENTER_H
