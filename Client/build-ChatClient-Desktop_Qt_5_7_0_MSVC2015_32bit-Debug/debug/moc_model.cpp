@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_Model_t {
-    QByteArrayData data[14];
-    char stringdata0[137];
+    QByteArrayData data[15];
+    char stringdata0[143];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -36,19 +36,21 @@ QT_MOC_LITERAL(3, 17, 6), // "Group*"
 QT_MOC_LITERAL(4, 24, 4), // "chat"
 QT_MOC_LITERAL(5, 29, 14), // "groupChatAdded"
 QT_MOC_LITERAL(6, 44, 11), // "chatRemoved"
-QT_MOC_LITERAL(7, 56, 16), // "groupChatRemoved"
-QT_MOC_LITERAL(8, 73, 7), // "addChat"
-QT_MOC_LITERAL(9, 81, 12), // "addGroupChat"
-QT_MOC_LITERAL(10, 94, 17), // "addMessageToGroup"
-QT_MOC_LITERAL(11, 112, 8), // "Message*"
-QT_MOC_LITERAL(12, 121, 7), // "message"
-QT_MOC_LITERAL(13, 129, 7) // "groupId"
+QT_MOC_LITERAL(7, 56, 5), // "index"
+QT_MOC_LITERAL(8, 62, 16), // "groupChatRemoved"
+QT_MOC_LITERAL(9, 79, 7), // "addChat"
+QT_MOC_LITERAL(10, 87, 12), // "addGroupChat"
+QT_MOC_LITERAL(11, 100, 17), // "addMessageToGroup"
+QT_MOC_LITERAL(12, 118, 8), // "Message*"
+QT_MOC_LITERAL(13, 127, 7), // "message"
+QT_MOC_LITERAL(14, 135, 7) // "groupId"
 
     },
     "Model\0chatAdded\0\0Group*\0chat\0"
-    "groupChatAdded\0chatRemoved\0groupChatRemoved\0"
-    "addChat\0addGroupChat\0addMessageToGroup\0"
-    "Message*\0message\0groupId"
+    "groupChatAdded\0chatRemoved\0index\0"
+    "groupChatRemoved\0addChat\0addGroupChat\0"
+    "addMessageToGroup\0Message*\0message\0"
+    "groupId"
 };
 #undef QT_MOC_LITERAL
 
@@ -68,24 +70,24 @@ static const uint qt_meta_data_Model[] = {
  // signals: name, argc, parameters, tag, flags
        1,    1,   49,    2, 0x06 /* Public */,
        5,    1,   52,    2, 0x06 /* Public */,
-       6,    0,   55,    2, 0x06 /* Public */,
-       7,    0,   56,    2, 0x06 /* Public */,
+       6,    1,   55,    2, 0x06 /* Public */,
+       8,    1,   58,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       8,    1,   57,    2, 0x0a /* Public */,
-       9,    1,   60,    2, 0x0a /* Public */,
-      10,    2,   63,    2, 0x0a /* Public */,
+       9,    1,   61,    2, 0x0a /* Public */,
+      10,    1,   64,    2, 0x0a /* Public */,
+      11,    2,   67,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
     QMetaType::Void, 0x80000000 | 3,    4,
-    QMetaType::Void,
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::UShort,    7,
+    QMetaType::Void, QMetaType::UShort,    7,
 
  // slots: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
     QMetaType::Void, 0x80000000 | 3,    4,
-    QMetaType::Void, 0x80000000 | 11, QMetaType::UInt,   12,   13,
+    QMetaType::Void, 0x80000000 | 12, QMetaType::UInt,   13,   14,
 
        0        // eod
 };
@@ -98,8 +100,8 @@ void Model::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void 
         switch (_id) {
         case 0: _t->chatAdded((*reinterpret_cast< Group*(*)>(_a[1]))); break;
         case 1: _t->groupChatAdded((*reinterpret_cast< Group*(*)>(_a[1]))); break;
-        case 2: _t->chatRemoved(); break;
-        case 3: _t->groupChatRemoved(); break;
+        case 2: _t->chatRemoved((*reinterpret_cast< quint16(*)>(_a[1]))); break;
+        case 3: _t->groupChatRemoved((*reinterpret_cast< quint16(*)>(_a[1]))); break;
         case 4: _t->addChat((*reinterpret_cast< Group*(*)>(_a[1]))); break;
         case 5: _t->addGroupChat((*reinterpret_cast< Group*(*)>(_a[1]))); break;
         case 6: _t->addMessageToGroup((*reinterpret_cast< Message*(*)>(_a[1])),(*reinterpret_cast< quint32(*)>(_a[2]))); break;
@@ -123,14 +125,14 @@ void Model::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void 
             }
         }
         {
-            typedef void (Model::*_t)();
+            typedef void (Model::*_t)(quint16 );
             if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&Model::chatRemoved)) {
                 *result = 2;
                 return;
             }
         }
         {
-            typedef void (Model::*_t)();
+            typedef void (Model::*_t)(quint16 );
             if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&Model::groupChatRemoved)) {
                 *result = 3;
                 return;
@@ -190,14 +192,16 @@ void Model::groupChatAdded(Group * _t1)
 }
 
 // SIGNAL 2
-void Model::chatRemoved()
+void Model::chatRemoved(quint16 _t1)
 {
-    QMetaObject::activate(this, &staticMetaObject, 2, Q_NULLPTR);
+    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 
 // SIGNAL 3
-void Model::groupChatRemoved()
+void Model::groupChatRemoved(quint16 _t1)
 {
-    QMetaObject::activate(this, &staticMetaObject, 3, Q_NULLPTR);
+    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 3, _a);
 }
 QT_END_MOC_NAMESPACE

@@ -25,7 +25,10 @@ public:
 
 signals:
     void addContact();
+    void removeContact(quint16 index);
+
     void createGroup(QList<quint16> *indexes);
+    void leaveGroup(quint16 index);
 
 private slots:
     void chatSelectionChanged();

@@ -18,7 +18,10 @@ ContactsPresenter::ContactsPresenter(QObject *parent) : QObject(parent)
     _model = new Model();
 
     connect(_contacts, SIGNAL(addContact()), this, SLOT(addContact()));
+    connect(_contacts, SIGNAL(removeContact(quint16)), this, SLOT(removeContact(quint16)));
+
     connect(_contacts, SIGNAL(createGroup(QList<quint16>*)), this, SLOT(createGroup(QList<quint16>*)));
+    connect(_contacts, SIGNAL(leaveGroup(quint16)), this, SLOT(leaveGroup(quint16)));
 }
 
 ContactsPresenter::~ContactsPresenter()
@@ -56,6 +59,11 @@ void ContactsPresenter::addContact()
     getAddContactDialog()->showWindow();
 }
 
+void ContactsPresenter::removeContact(quint16 index)
+{
+    _model->removeChat(index);
+}
+
 void ContactsPresenter::createGroup(QList<quint16> *indexes)
 {
     User *user = nullptr;
@@ -63,7 +71,7 @@ void ContactsPresenter::createGroup(QList<quint16> *indexes)
 
     for (quint16 index : *indexes)
     {
-        user = _model->getUsersExceptMe(_model->chats()->at(index))->at(0);
+        user = _model->chats()->at(index)->getMembers()->at(0);
         users->append(user);
     }
 
@@ -77,4 +85,9 @@ void ContactsPresenter::createGroup(QList<quint16> *indexes)
     {
         _model->addGroupChat(new Group(0, name, users));
     }
+}
+
+void ContactsPresenter::leaveGroup(quint16 index)
+{
+    _model->removeGroupChat(index);
 }

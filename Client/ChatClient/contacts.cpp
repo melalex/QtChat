@@ -20,12 +20,14 @@ Contacts::Contacts(QWidget *parent) :
     ui->tableView_5->horizontalHeader()->hide();
     ui->tableView_5->setShowGrid(false);
     ui->tableView_5->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableView_5->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableView_5->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     ui->tableView_6->verticalHeader()->hide();
     ui->tableView_6->horizontalHeader()->hide();
     ui->tableView_6->setShowGrid(false);
     ui->tableView_6->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableView_6->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableView_6->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
@@ -99,7 +101,9 @@ void Contacts::on_pushButton_17_clicked()
 
 void Contacts::on_pushButton_18_clicked()
 {
+    QItemSelection selected = ui->tableView_5->selectionModel()->selection();
 
+    emit removeContact(selected.indexes().at(0).row());
 }
 
 void Contacts::on_pushButton_19_clicked()
@@ -131,5 +135,7 @@ void Contacts::on_pushButton_20_clicked()
 
 void Contacts::on_pushButton_23_clicked()
 {
+    QItemSelection selected = ui->tableView_6->selectionModel()->selection();
 
+    emit leaveGroup(selected.indexes().at(0).row());
 }

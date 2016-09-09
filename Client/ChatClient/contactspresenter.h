@@ -23,7 +23,10 @@ signals:
 
 public slots:
     void addContact();
+    void removeContact(quint16 index);
+
     void createGroup(QList<quint16> *indexes);
+    void leaveGroup(quint16 index);
 
 private:
     Contacts *_contacts;

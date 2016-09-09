@@ -11,6 +11,8 @@ class Group;
 class RowViewModel
 {
 public:
+    RowViewModel();
+    RowViewModel(QString login);
     RowViewModel(Group *group);
 
     QString login();
@@ -40,11 +42,19 @@ private:
 
     Qt::ItemFlags flags(const QModelIndex &index) const;
 
-    int rowCount(const QModelIndex &parent) const;
-    int columnCount(const QModelIndex &parent) const;
+    int rowCount(const QModelIndex &parent = QModelIndex()) const;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const;
 
-    QVariant data(const QModelIndex &index, int role) const;
-    bool setData(const QModelIndex &index, const QVariant &value, int role);
+    bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
+    
+    bool insertRows(int row, int count, const QModelIndex &parent = QModelIndex());
+    bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex());
+
+private slots:
+    void chatAdded(Group *chat);
+    void chatRemoved(quint16 index);
+    
 };
 
 #endif // CHATSMODEL_H

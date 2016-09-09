@@ -11,7 +11,7 @@ ConnectionMenager::ConnectionMenager(QObject *parent) :
 
 ConnectionMenager::~ConnectionMenager()
 {
-
+    delete _currentUser;
 }
 
 User *ConnectionMenager::currentUser()
@@ -55,19 +55,15 @@ QList<Group *> *ConnectionMenager::getChats()
     User *user4 = new User(4, "User4");
 
     QList<User *> *list1 = new QList<User *>();
-    list1->append(_currentUser);
     list1->append(user1);
 
     QList<User *> *list2 = new QList<User *>();
-    list2->append(_currentUser);
     list2->append(user2);
 
     QList<User *> *list3 = new QList<User *>();
-    list3->append(_currentUser);
     list3->append(user3);
 
     QList<User *> *list4 = new QList<User *>();
-    list4->append(_currentUser);
     list4->append(user4);
 
     Group *group1 = new Group(0, user1->getLogin(), list1);
@@ -92,7 +88,6 @@ QList<Group *> *ConnectionMenager::getGroupChats()
     User *user7 = new User(7, "User3");
 
     QList<User *> *list5 = new QList<User *>();
-    list5->append(_currentUser);
     list5->append(user5);
     list5->append(user6);
     list5->append(user7);

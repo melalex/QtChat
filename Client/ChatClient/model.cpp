@@ -17,21 +17,6 @@ Model::~Model()
     delete _groupChats;
 }
 
-QList<User *> *Model::getUsersExceptMe(Group *chat)
-{
-    QList<User *> *result = new QList<User *>();
-
-    for (User *user : *chat->getMembers())
-    {
-        if (user != _connectionMenager->currentUser())
-        {
-            result->append(user);
-        }
-    }
-
-    return result;
-}
-
 QList<Group *> *Model::chats()
 {
     return _chats;
@@ -58,30 +43,34 @@ void Model::addChat(Group *chat)
 {
     _chats->append(chat);
 
-    chatAdded(chat);
+    emit chatAdded(chat);
 }
 
 void Model::addGroupChat(Group *chat)
 {
     _groupChats->append(chat);
 
-    groupChatAdded(chat);
+    emit groupChatAdded(chat);
 }
 
-void Model::removeChat(Group *chat)
+void Model::removeChat(quint16 index)
 {
-    _chats->removeOne(chat);
+    Group *chat = _chats->at(index);
 
-    chatRemoved();
+    _chats->removeAt(index);
+
+    emit chatRemoved(index);
 
     delete chat;
 }
 
-void Model::removeGroupChat(Group *chat)
-{
-    _groupChats->removeOne(chat);
+void Model::removeGroupChat(quint16 index)
+{    
+    Group *chat = _groupChats->at(index);
 
-    groupChatRemoved();
+    _groupChats->removeAt(index);
+
+    emit groupChatRemoved(index);
 
     delete chat;
 }

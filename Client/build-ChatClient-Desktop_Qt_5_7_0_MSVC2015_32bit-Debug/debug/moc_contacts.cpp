@@ -20,8 +20,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_Contacts_t {
-    QByteArrayData data[15];
-    char stringdata0[254];
+    QByteArrayData data[18];
+    char stringdata0[285];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,22 +33,26 @@ static const qt_meta_stringdata_Contacts_t qt_meta_stringdata_Contacts = {
 QT_MOC_LITERAL(0, 0, 8), // "Contacts"
 QT_MOC_LITERAL(1, 9, 10), // "addContact"
 QT_MOC_LITERAL(2, 20, 0), // ""
-QT_MOC_LITERAL(3, 21, 11), // "createGroup"
-QT_MOC_LITERAL(4, 33, 15), // "QList<quint16>*"
-QT_MOC_LITERAL(5, 49, 7), // "indexes"
-QT_MOC_LITERAL(6, 57, 20), // "chatSelectionChanged"
-QT_MOC_LITERAL(7, 78, 25), // "groupChatSelectionChanged"
-QT_MOC_LITERAL(8, 104, 14), // "QItemSelection"
-QT_MOC_LITERAL(9, 119, 9), // "selection"
-QT_MOC_LITERAL(10, 129, 24), // "on_pushButton_17_clicked"
-QT_MOC_LITERAL(11, 154, 24), // "on_pushButton_18_clicked"
-QT_MOC_LITERAL(12, 179, 24), // "on_pushButton_19_clicked"
-QT_MOC_LITERAL(13, 204, 24), // "on_pushButton_20_clicked"
-QT_MOC_LITERAL(14, 229, 24) // "on_pushButton_23_clicked"
+QT_MOC_LITERAL(3, 21, 13), // "removeContact"
+QT_MOC_LITERAL(4, 35, 5), // "index"
+QT_MOC_LITERAL(5, 41, 11), // "createGroup"
+QT_MOC_LITERAL(6, 53, 15), // "QList<quint16>*"
+QT_MOC_LITERAL(7, 69, 7), // "indexes"
+QT_MOC_LITERAL(8, 77, 10), // "leaveGroup"
+QT_MOC_LITERAL(9, 88, 20), // "chatSelectionChanged"
+QT_MOC_LITERAL(10, 109, 25), // "groupChatSelectionChanged"
+QT_MOC_LITERAL(11, 135, 14), // "QItemSelection"
+QT_MOC_LITERAL(12, 150, 9), // "selection"
+QT_MOC_LITERAL(13, 160, 24), // "on_pushButton_17_clicked"
+QT_MOC_LITERAL(14, 185, 24), // "on_pushButton_18_clicked"
+QT_MOC_LITERAL(15, 210, 24), // "on_pushButton_19_clicked"
+QT_MOC_LITERAL(16, 235, 24), // "on_pushButton_20_clicked"
+QT_MOC_LITERAL(17, 260, 24) // "on_pushButton_23_clicked"
 
     },
-    "Contacts\0addContact\0\0createGroup\0"
-    "QList<quint16>*\0indexes\0chatSelectionChanged\0"
+    "Contacts\0addContact\0\0removeContact\0"
+    "index\0createGroup\0QList<quint16>*\0"
+    "indexes\0leaveGroup\0chatSelectionChanged\0"
     "groupChatSelectionChanged\0QItemSelection\0"
     "selection\0on_pushButton_17_clicked\0"
     "on_pushButton_18_clicked\0"
@@ -64,33 +68,37 @@ static const uint qt_meta_data_Contacts[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       9,   14, // methods
+      11,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       2,       // signalCount
+       4,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   59,    2, 0x06 /* Public */,
-       3,    1,   60,    2, 0x06 /* Public */,
+       1,    0,   69,    2, 0x06 /* Public */,
+       3,    1,   70,    2, 0x06 /* Public */,
+       5,    1,   73,    2, 0x06 /* Public */,
+       8,    1,   76,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       6,    0,   63,    2, 0x08 /* Private */,
-       7,    1,   64,    2, 0x08 /* Private */,
-      10,    0,   67,    2, 0x08 /* Private */,
-      11,    0,   68,    2, 0x08 /* Private */,
-      12,    0,   69,    2, 0x08 /* Private */,
-      13,    0,   70,    2, 0x08 /* Private */,
-      14,    0,   71,    2, 0x08 /* Private */,
+       9,    0,   79,    2, 0x08 /* Private */,
+      10,    1,   80,    2, 0x08 /* Private */,
+      13,    0,   83,    2, 0x08 /* Private */,
+      14,    0,   84,    2, 0x08 /* Private */,
+      15,    0,   85,    2, 0x08 /* Private */,
+      16,    0,   86,    2, 0x08 /* Private */,
+      17,    0,   87,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 4,    5,
+    QMetaType::Void, QMetaType::UShort,    4,
+    QMetaType::Void, 0x80000000 | 6,    7,
+    QMetaType::Void, QMetaType::UShort,    4,
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 8,    9,
+    QMetaType::Void, 0x80000000 | 11,   12,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -107,20 +115,22 @@ void Contacts::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->addContact(); break;
-        case 1: _t->createGroup((*reinterpret_cast< QList<quint16>*(*)>(_a[1]))); break;
-        case 2: _t->chatSelectionChanged(); break;
-        case 3: _t->groupChatSelectionChanged((*reinterpret_cast< const QItemSelection(*)>(_a[1]))); break;
-        case 4: _t->on_pushButton_17_clicked(); break;
-        case 5: _t->on_pushButton_18_clicked(); break;
-        case 6: _t->on_pushButton_19_clicked(); break;
-        case 7: _t->on_pushButton_20_clicked(); break;
-        case 8: _t->on_pushButton_23_clicked(); break;
+        case 1: _t->removeContact((*reinterpret_cast< quint16(*)>(_a[1]))); break;
+        case 2: _t->createGroup((*reinterpret_cast< QList<quint16>*(*)>(_a[1]))); break;
+        case 3: _t->leaveGroup((*reinterpret_cast< quint16(*)>(_a[1]))); break;
+        case 4: _t->chatSelectionChanged(); break;
+        case 5: _t->groupChatSelectionChanged((*reinterpret_cast< const QItemSelection(*)>(_a[1]))); break;
+        case 6: _t->on_pushButton_17_clicked(); break;
+        case 7: _t->on_pushButton_18_clicked(); break;
+        case 8: _t->on_pushButton_19_clicked(); break;
+        case 9: _t->on_pushButton_20_clicked(); break;
+        case 10: _t->on_pushButton_23_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
-        case 3:
+        case 5:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
@@ -139,9 +149,23 @@ void Contacts::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
             }
         }
         {
+            typedef void (Contacts::*_t)(quint16 );
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&Contacts::removeContact)) {
+                *result = 1;
+                return;
+            }
+        }
+        {
             typedef void (Contacts::*_t)(QList<quint16> * );
             if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&Contacts::createGroup)) {
-                *result = 1;
+                *result = 2;
+                return;
+            }
+        }
+        {
+            typedef void (Contacts::*_t)(quint16 );
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&Contacts::leaveGroup)) {
+                *result = 3;
                 return;
             }
         }
@@ -173,13 +197,13 @@ int Contacts::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 11;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 9)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 11;
     }
     return _id;
 }
@@ -191,9 +215,23 @@ void Contacts::addContact()
 }
 
 // SIGNAL 1
-void Contacts::createGroup(QList<quint16> * _t1)
+void Contacts::removeContact(quint16 _t1)
 {
     void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 1, _a);
+}
+
+// SIGNAL 2
+void Contacts::createGroup(QList<quint16> * _t1)
+{
+    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 2, _a);
+}
+
+// SIGNAL 3
+void Contacts::leaveGroup(quint16 _t1)
+{
+    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 3, _a);
 }
 QT_END_MOC_NAMESPACE

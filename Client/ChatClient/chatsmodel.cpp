@@ -16,6 +16,9 @@ ChatsModel::ChatsModel(Model *model, QObject *parent) :
     {
         _tableModel.append(new RowViewModel(group));
     }
+    
+    connect(_model, SIGNAL(chatAdded(Group*)), this, SLOT(chatAdded(Group*)));
+    connect(_model, SIGNAL(chatRemoved(quint16)), this, SLOT(chatRemoved(quint16)));
 }
 
 ChatsModel::~ChatsModel()
@@ -53,11 +56,15 @@ Qt::ItemFlags ChatsModel::flags(const QModelIndex &index) const
 
 int ChatsModel::rowCount(const QModelIndex &parent) const
 {
+    Q_UNUSED(parent);
+
     return _tableModel.count();
 }
 
 int ChatsModel::columnCount(const QModelIndex &parent) const
 {
+    Q_UNUSED(parent);
+
     return kColumnCount;
 }
 
@@ -98,16 +105,89 @@ bool ChatsModel::setData(const QModelIndex &index, const QVariant &value, int ro
             result = true;
         }
     }
+    else if (index.isValid() && role == Qt::EditRole)
+    {
+        RowViewModel *rowViewModel = _tableModel.at(index.row());
+
+        _tableModel.replace(index.row(), new RowViewModel(value.toString()));
+
+        emit dataChanged(index, index);
+
+        result = true;
+
+        delete rowViewModel;
+    }
 
     return result;
 }
 
+bool ChatsModel::insertRows(int row, int count, const QModelIndex &parent)
+{
+    Q_UNUSED(parent);
+
+    beginInsertRows(QModelIndex(), row, row + count - 1);
+
+    for (int i = 0; i < count; i++)
+    {
+        _tableModel.insert(row, new RowViewModel());
+    }
+
+    endInsertRows();
+
+    return true;
+}
+
+bool ChatsModel::removeRows(int row, int count, const QModelIndex &parent)
+{
+    Q_UNUSED(parent);
+
+    beginRemoveRows(QModelIndex(), row, row + count - 1);
+
+    RowViewModel *rowViewModel = nullptr;
+    for (int i = 0; i < count; i++)
+    {
+        rowViewModel = _tableModel.at(row);
+
+        _tableModel.removeAt(row);
+
+        delete rowViewModel;
+    }
+
+    endRemoveRows();
+
+    return true;
+}
+
+void ChatsModel::chatAdded(Group *chat)
+{
+    insertRow(rowCount());
+
+    setData(createIndex(rowCount() - 1, 0), chat->getName());
+}
+
+void ChatsModel::chatRemoved(quint16 index)
+{
+    removeRow(index);
+}
+
 //RowViewModel
 
-RowViewModel::RowViewModel(Group *group)
+RowViewModel::RowViewModel() :
+    _login(""), _checkBox(false)
 {
-    _login = group->getName();
-    _checkBox = false;
+
+}
+
+RowViewModel::RowViewModel(QString login) :
+    _login(login), _checkBox(false)
+{
+
+}
+
+RowViewModel::RowViewModel(Group *group) :
+    _login(group->getName()), _checkBox(false)
+{
+
 }
 
 QString RowViewModel::login()
