@@ -12,7 +12,6 @@ Group::Group(quint32 id, QString name, QList<User *> *members, QObject *parent, 
 
 Group::~Group()
 {
-   qDeleteAll(*_members);
    qDeleteAll(*_messages);
 
    delete _members;

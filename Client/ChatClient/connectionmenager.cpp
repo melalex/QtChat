@@ -26,7 +26,7 @@ void ConnectionMenager::signUp(QString login, QString password)
 
 void ConnectionMenager::signIn(QString login, QString password)
 {
-    _currentUser = new User(0, "Me");
+    _currentUser = UserCreator::getInstance().createUser(0, "Me");
     logged();
 }
 
@@ -49,10 +49,10 @@ QList<Group *> *ConnectionMenager::getChats()
 {
     QList<Group *> *result = new QList<Group *>();
 
-    User *user1 = new User(1, "User1");
-    User *user2 = new User(2, "User2");
-    User *user3 = new User(3, "User3");
-    User *user4 = new User(4, "User4");
+    User *user1 = UserCreator::getInstance().createUser(1, "User1");
+    User *user2 = UserCreator::getInstance().createUser(2, "User2");
+    User *user3 = UserCreator::getInstance().createUser(3, "User3");
+    User *user4 = UserCreator::getInstance().createUser(4, "User4");
 
     QList<User *> *list1 = new QList<User *>();
     list1->append(user1);
@@ -83,9 +83,9 @@ QList<Group *> *ConnectionMenager::getGroupChats()
 {
     QList<Group *> *result = new QList<Group *>();
 
-    User *user5 = new User(5, "User1");
-    User *user6 = new User(6, "User2");
-    User *user7 = new User(7, "User3");
+    User *user5 = UserCreator::getInstance().createUser(5, "User1");
+    User *user6 = UserCreator::getInstance().createUser(6, "User2");
+    User *user7 = UserCreator::getInstance().createUser(7, "User3");
 
     QList<User *> *list5 = new QList<User *>();
     list5->append(user5);

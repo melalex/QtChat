@@ -2,22 +2,42 @@
 #define USER_H
 
 #include <QtGlobal>
-
-#include <string>
+#include <QHash>
 
 class QString;
+class User;
+
+class UserCreator
+{
+public:
+    static UserCreator& getInstance();
+
+    User* createUser(quint32 id, QString login);
+
+private:
+    QHash<quint32, User *> _usersPool;
+
+    UserCreator() = default;
+    UserCreator(const UserCreator&) = default;
+
+    ~UserCreator();
+
+    UserCreator& operator=(UserCreator&) = default;
+};
 
 class User
 {
-public:
-    User(quint32 id, QString login);
+    friend class UserCreator;
 
+public:
     quint32 getId();
     QString getLogin();
 
 private:
     quint32 _id;
     QString _login;
+
+    User(quint32 id, QString login);
 };
 
 #endif // USER_H
