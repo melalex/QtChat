@@ -18,7 +18,7 @@ public:
     void showWindow();
 
 signals:
-    void setPossibleContacts(QList<User *> *users);
+    void setPossibleContacts(const QList<User *> *users);
 
 public slots:
     void getPossibleContacts(QString loginPart);

@@ -15,7 +15,7 @@ AddContactDialogPresenter::AddContactDialogPresenter(Model *model, ConnectionMen
 
     PossibleContactsModel *possibleContactsModel = new PossibleContactsModel(this);
 
-    connect(this, SIGNAL(setPossibleContacts(QList<User*>*)), possibleContactsModel, SLOT(setPossibleContacts(QList<User*>*)));
+    connect(this, SIGNAL(setPossibleContacts(const QList<User*>*)), possibleContactsModel, SLOT(setPossibleContacts(const QList<User*>*)));
 
     _addContactDialog->setTableModel(possibleContactsModel);
 

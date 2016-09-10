@@ -28,7 +28,7 @@ private:
     bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex());
 
 private slots:
-    void setPossibleContacts(QList<User *> *users);
+    void setPossibleContacts(const QList<User *> *users);
 
 };
 

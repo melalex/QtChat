@@ -103,7 +103,7 @@ bool PossibleContactsModel::removeRows(int row, int count, const QModelIndex &pa
     return true;
 }
 
-void PossibleContactsModel::setPossibleContacts(QList<User *> *users)
+void PossibleContactsModel::setPossibleContacts(const QList<User *> *users)
 {
     clear();
 

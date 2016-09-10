@@ -15,8 +15,10 @@ public:
     ~ChatDialogPresenter();
 
     void setGroup(Group *group);
+    Group *group();
 
     void showWindow();
+    void hideWindow();
 
 public slots:
     void messageAdded(Message *message);

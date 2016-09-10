@@ -84,6 +84,11 @@ void ContactsPresenter::addContact()
 
 void ContactsPresenter::removeContact(quint16 index)
 {
+    if (getChatDialogPresenter()->group() == _model->chats()->at(index))
+    {
+        getChatDialogPresenter()->hideWindow();
+    }
+
     _model->removeChat(index);
 }
 
@@ -112,6 +117,11 @@ void ContactsPresenter::createGroup(QList<quint16> *indexes)
 
 void ContactsPresenter::leaveGroup(quint16 index)
 {
+    if (getGroupChatDialogPresenter()->group() == _model->groupChats()->at(index))
+    {
+        getGroupChatDialogPresenter()->hideWindow();
+    }
+
     _model->removeGroupChat(index);
 }
 
@@ -123,5 +133,6 @@ void ContactsPresenter::openChat(quint16 index)
 
 void ContactsPresenter::openGroupChat(quint16 index)
 {
-
+    getGroupChatDialogPresenter()->setGroup(_model->groupChats()->at(index));
+    getGroupChatDialogPresenter()->showWindow();
 }

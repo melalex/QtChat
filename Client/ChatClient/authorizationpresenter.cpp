@@ -56,14 +56,19 @@ void AuthorizationPresenter::signUp()
 
 void AuthorizationPresenter::signIn(QString login, QString password)
 {
-    if(!login.isEmpty() && login.count() > 2 && !password.isEmpty() && password.count() > 2)
+    if(!login.isEmpty() &&
+       login.count() > 2 &&
+       login.count() < 21 &&
+       !password.isEmpty() &&
+       password.count() > 2 &&
+       password.count() < 21)
     {
         _connectionMenager->signIn(login, password);
     }
     else
     {
         QMessageBox msgBox;
-        msgBox.setText("Fields must be longer than two characters");
+        msgBox.setText("Fields must be longer than two or shorter than twenty characters");
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.exec();
     }

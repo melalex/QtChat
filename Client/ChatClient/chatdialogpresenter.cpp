@@ -38,9 +38,23 @@ void ChatDialogPresenter::setGroup(Group *group)
     }
 }
 
+Group *ChatDialogPresenter::group()
+{
+    return _group;
+}
+
 void ChatDialogPresenter::showWindow()
 {
     _chat->show();
+}
+
+void ChatDialogPresenter::hideWindow()
+{
+    disconnect(_group, SIGNAL(messageAdded(Message*)), this, SLOT(messageAdded(Message*)));
+
+    _group = nullptr;
+
+    _chat->close();
 }
 
 void ChatDialogPresenter::messageAdded(Message *message)
