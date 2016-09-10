@@ -14,8 +14,11 @@ public:
     explicit GroupChatsModel(Model *model, QObject *parent = 0);
     ~GroupChatsModel();
 
+    void clear();
+
 private:
     Model *_model;
+    QStringList _tableModel;
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
@@ -25,9 +28,6 @@ private:
 
     bool insertRows(int row, int count, const QModelIndex &parent = QModelIndex());
     bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex());
-
-private:
-    QStringList _tableModel;
 
 private slots:
     void groupChatAdded(Group *chat);

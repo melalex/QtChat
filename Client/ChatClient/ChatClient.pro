@@ -32,7 +32,8 @@ SOURCES += main.cpp\
     contactspresenter.cpp \
     groupchatdialogpresenter.cpp \
     chatsmodel.cpp \
-    groupchatsmodel.cpp
+    groupchatsmodel.cpp \
+    possiblecontactsmodel.cpp
 
 HEADERS  += \
     user.h \
@@ -53,7 +54,8 @@ HEADERS  += \
     contactspresenter.h \
     groupchatdialogpresenter.h \
     chatsmodel.h \
-    groupchatsmodel.h
+    groupchatsmodel.h \
+    possiblecontactsmodel.h
 
 FORMS    += \
     authorization.ui \

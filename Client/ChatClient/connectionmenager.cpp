@@ -83,9 +83,9 @@ QList<Group *> *ConnectionMenager::getGroupChats()
 {
     QList<Group *> *result = new QList<Group *>();
 
-    User *user5 = UserCreator::getInstance().createUser(5, "User1");
-    User *user6 = UserCreator::getInstance().createUser(6, "User2");
-    User *user7 = UserCreator::getInstance().createUser(7, "User3");
+    User *user5 = UserCreator::getInstance().createUser(5, "User5");
+    User *user6 = UserCreator::getInstance().createUser(6, "User6");
+    User *user7 = UserCreator::getInstance().createUser(7, "User7");
 
     QList<User *> *list5 = new QList<User *>();
     list5->append(user5);
@@ -99,8 +99,17 @@ QList<Group *> *ConnectionMenager::getGroupChats()
     return result;
 }
 
-QList<User *> *ConnectionMenager::getPossibleContacts(QString loginPart)
+void ConnectionMenager::getPossibleContacts(QString loginPart)
 {
     QList<User *> *result = new QList<User *>();
-    return result;
+
+    User *user8 = UserCreator::getInstance().createUser(8, "User8");
+    User *user9 = UserCreator::getInstance().createUser(9, "User9");
+    User *user10 = UserCreator::getInstance().createUser(10, "User10");
+
+    result->append(user8);
+    result->append(user9);
+    result->append(user10);
+
+    emit possibleContacts(result);
 }

@@ -56,14 +56,14 @@ void AuthorizationPresenter::signUp()
 
 void AuthorizationPresenter::signIn(QString login, QString password)
 {
-    if(!login.isEmpty() && !password.isEmpty())
+    if(!login.isEmpty() && login.count() > 2 && !password.isEmpty() && password.count() > 2)
     {
         _connectionMenager->signIn(login, password);
     }
     else
     {
         QMessageBox msgBox;
-        msgBox.setText("Fields cannot be blank");
+        msgBox.setText("Fields must be longer than two characters");
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.exec();
     }

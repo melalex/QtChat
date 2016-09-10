@@ -24,6 +24,11 @@ GroupChatsModel::~GroupChatsModel()
 
 }
 
+void GroupChatsModel::clear()
+{
+    removeRows(0, rowCount());
+}
+
 int GroupChatsModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);

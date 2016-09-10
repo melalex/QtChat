@@ -32,8 +32,9 @@ void RegistrationPresenter::setConnectionMenager(ConnectionMenager *connectionMe
 void RegistrationPresenter::registerANewUser(QString login, QString password, QString confirmPassword)
 {
     if (!login.isEmpty() &&
+        login.count() > 2 &&
         !password.isEmpty() &&
-        !confirmPassword.isEmpty() &&
+        password.count() > 2 &&
         QString::compare(password, confirmPassword, Qt::CaseSensitive) == 0)
     {
         _connectionMenager->signUp(login, password);

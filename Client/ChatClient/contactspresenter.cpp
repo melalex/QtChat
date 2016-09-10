@@ -49,7 +49,7 @@ AddContactDialogPresenter *ContactsPresenter::getAddContactDialog()
 {
     if (!_addContactDialog)
     {
-        _addContactDialog = new AddContactDialogPresenter(this);
+        _addContactDialog = new AddContactDialogPresenter(_model, _connectionMenager, this);
     }
     return _addContactDialog;
 }
