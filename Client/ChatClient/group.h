@@ -16,10 +16,10 @@ public:
     explicit Group(quint32 id, QString name, QList<User *> *members, QObject *parent = 0, QList<Message *> *messages = new QList<Message *>());
     ~Group();
 
-    quint32 getId();
-    QString getName();
-    QList<User *> *getMembers();
-    QList<Message *> *getMessages();
+    quint32 getId() const;
+    QString getName() const;
+    const QList<User *> *getMembers() const;
+    const QList<Message *> *getMessages() const;
 
     void addMember(User *user);
     void removeMember(User *user);

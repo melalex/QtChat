@@ -7,27 +7,27 @@ Message::Message(const QDateTime &time, const QString &text, User *sender, Group
 
 }
 
-QDateTime Message::getTime()
+QDateTime Message::getTime() const
 {
     return _time;
 }
 
-QString Message::getText()
+QString Message::getText() const
 {
     return _text;
 }
 
-User *Message::getSender()
+User *Message::getSender() const
 {
     return _sender;
 }
 
-Group *Message::getGroup()
+Group *Message::getGroup() const
 {
     return _group;
 }
 
-QString Message::toString()
+QString Message::toString() const
 {
     QString time = _time.toString("dd.MM.yyyy hh:mm");
     QString result = QString("%1 (%3): %2").arg(_sender->getLogin(), time, _text);

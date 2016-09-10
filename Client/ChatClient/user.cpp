@@ -10,12 +10,12 @@ User::User(quint32 id, QString login) :
 
 }
 
-quint32 User::getId()
+quint32 User::getId() const
 {
     return _id;
 }
 
-QString User::getLogin()
+QString User::getLogin() const
 {
     return _login;
 }

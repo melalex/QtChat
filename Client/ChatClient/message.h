@@ -12,12 +12,12 @@ class Message
 public:
     Message(const QDateTime &time, const QString &text, User *sender, Group *group);
 
-    QDateTime getTime();
-    QString getText();
-    User *getSender();
-    Group *getGroup();
+    QDateTime getTime() const;
+    QString getText() const;
+    User *getSender() const;
+    Group *getGroup() const;
 
-    QString toString();
+    QString toString() const;
 
 private:
     QDateTime  _time;

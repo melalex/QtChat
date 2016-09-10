@@ -17,12 +17,12 @@ Model::~Model()
     delete _groupChats;
 }
 
-QList<Group *> *Model::chats()
+const QList<Group *> *Model::chats() const
 {
     return _chats;
 }
 
-QList<Group *> *Model::groupChats()
+const QList<Group *> *Model::groupChats() const
 {
     return _groupChats;
 }

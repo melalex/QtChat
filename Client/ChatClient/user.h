@@ -30,8 +30,8 @@ class User
     friend class UserCreator;
 
 public:
-    quint32 getId();
-    QString getLogin();
+    quint32 getId() const;
+    QString getLogin() const;
 
 private:
     quint32 _id;

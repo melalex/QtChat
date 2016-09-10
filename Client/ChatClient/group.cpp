@@ -18,22 +18,22 @@ Group::~Group()
    delete _messages;
 }
 
-quint32 Group::getId()
+quint32 Group::getId() const
 {
     return _id;
 }
 
-QString Group::getName()
+QString Group::getName() const
 {
     return _name;
 }
 
-QList<User *> *Group::getMembers()
+const QList<User *> *Group::getMembers() const
 {
     return _members;
 }
 
-QList<Message *> *Group::getMessages()
+const QList<Message *> *Group::getMessages() const
 {
     return _messages;
 }

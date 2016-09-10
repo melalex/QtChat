@@ -16,8 +16,8 @@ public:
     explicit Model(QObject *parent = 0);
     ~Model();
 
-    QList<Group *> *chats();
-    QList<Group *> *groupChats();
+    const QList<Group *> *chats() const;
+    const QList<Group *> *groupChats() const;
 
     void setConnectionMenager(ConnectionMenager *connectionMenager);
 

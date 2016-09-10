@@ -34,7 +34,7 @@ public:
     explicit ChatsModel(Model *model, QObject *parent = 0);
     ~ChatsModel();
 
-    QList<quint16> *selectedItems();
+    QList<quint16> *selectedItems() const;
 
 private:
     Model *_model;

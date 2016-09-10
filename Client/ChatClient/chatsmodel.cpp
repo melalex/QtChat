@@ -26,7 +26,7 @@ ChatsModel::~ChatsModel()
     qDeleteAll(_tableModel);
 }
 
-QList<quint16> *ChatsModel::selectedItems()
+QList<quint16> *ChatsModel::selectedItems() const
 {
     QList<quint16> *result = new QList<quint16>();
 
