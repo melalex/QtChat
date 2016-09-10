@@ -21,6 +21,9 @@ public:
 
     void setConnectionMenager(ConnectionMenager *connectionMenager);
 
+    void createChat(User *user);
+    void createGroupChat(QString name, QList<User *> *members);
+
     void removeChat(quint16 index);
     void removeGroupChat(quint16 index);
 
@@ -38,8 +41,8 @@ public slots:
     void addMessageToGroup(Message *message, quint32 groupId);
 
 private:
-    QList<Group *> *_chats;
-    QList<Group *> *_groupChats;
+    QList<Group *> *_chats = nullptr;
+    QList<Group *> *_groupChats = nullptr;
 
     ConnectionMenager *_connectionMenager;
 };

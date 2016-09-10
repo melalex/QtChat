@@ -111,7 +111,7 @@ void ContactsPresenter::createGroup(QList<quint16> *indexes)
                                                     &ok);
     if (ok && !name.isEmpty())
     {
-        _model->addGroupChat(new Group(0, name, users));
+        _model->createGroupChat(name, users);
     }
 }
 

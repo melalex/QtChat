@@ -42,6 +42,16 @@ void ConnectionMenager::createGroupChat(QList<User *> users, QString name)
 
 }
 
+void ConnectionMenager::removeContact(Group *chat)
+{
+
+}
+
+void ConnectionMenager::removeGroupChat(Group *chat)
+{
+
+}
+
 void ConnectionMenager::sendMessage(Message *message)
 {
 

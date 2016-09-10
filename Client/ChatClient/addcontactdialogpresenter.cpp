@@ -59,13 +59,8 @@ void AddContactDialogPresenter::getPossibleContacts(QString loginPart)
 void AddContactDialogPresenter::addContact(quint16 index)
 {
     User *user = _possibleContacts->at(index);
-    QList<User *> *list = new QList<User *>();
 
-    list->append(user);
-
-    Group *group = new Group(0, user->getLogin(), list);
-
-    _model->addChat(group);
+    _model->createChat(user);
 
     _addContactDialog->hideWindow();
 }

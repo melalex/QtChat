@@ -24,12 +24,16 @@ public:
     void addContact(User *user);
     void createGroupChat(QList<User *> users, QString name);
 
-    void sendMessage(Message *message);
+    void removeContact(Group *chat);
+    void removeGroupChat(Group *chat);
 
     QList<Group *> *getChats();
     QList<Group *> *getGroupChats();
 
     void getPossibleContacts(QString loginPart);
+
+public slots:
+    void sendMessage(Message *message);
 
 signals:
     void logged();
