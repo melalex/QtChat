@@ -82,11 +82,13 @@ public:
 
         lineEdit_2 = new QLineEdit(layoutWidget);
         lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
+        lineEdit_2->setEchoMode(QLineEdit::Password);
 
         verticalLayout->addWidget(lineEdit_2);
 
         lineEdit_3 = new QLineEdit(layoutWidget);
         lineEdit_3->setObjectName(QStringLiteral("lineEdit_3"));
+        lineEdit_3->setEchoMode(QLineEdit::Password);
 
         verticalLayout->addWidget(lineEdit_3);
 

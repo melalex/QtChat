@@ -16,7 +16,7 @@ public:
     explicit ConnectionMenager(QObject *parent = 0);
     ~ConnectionMenager();
 
-    User *currentUser();
+    static User *currentUser();
 
     void signUp(QString login, QString password);
     void signIn(QString login, QString password);
@@ -46,7 +46,7 @@ signals:
     void addMessageToGroup(Message *message, quint32 groupId);
 
 private:
-    User *_currentUser;
+    static User *_currentUser;
 };
 
 #endif // CONNECTIONMENAGER_H

@@ -30,6 +30,6 @@ Group *Message::getGroup() const
 QString Message::toString() const
 {
     QString time = _time.toString("dd.MM.yyyy hh:mm");
-    QString result = QString("%1 (%3): %2").arg(_sender->getLogin(), time, _text);
+    QString result = QString("%1 [%2]: %3\n").arg(_sender->getLogin(), time, _text);
     return result;
 }

@@ -15,6 +15,17 @@ public:
     explicit ChatDialog(QWidget *parent = 0);
     ~ChatDialog();
 
+    void setInterlocutor(QString login);
+
+    void printMessage(QString message);
+    void clearOutput();
+
+signals:
+    void messageAdded(QString message);
+
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::ChatDialog *ui;
 };

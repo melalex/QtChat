@@ -3,6 +3,8 @@
 #include "group.h"
 #include "message.h"
 
+User *ConnectionMenager::_currentUser = nullptr;
+
 ConnectionMenager::ConnectionMenager(QObject *parent) :
     QObject(parent)
 {
@@ -11,7 +13,7 @@ ConnectionMenager::ConnectionMenager(QObject *parent) :
 
 ConnectionMenager::~ConnectionMenager()
 {
-    delete _currentUser;
+
 }
 
 User *ConnectionMenager::currentUser()

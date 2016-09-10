@@ -20,8 +20,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_ContactsPresenter_t {
-    QByteArrayData data[9];
-    char stringdata0[97];
+    QByteArrayData data[11];
+    char stringdata0[120];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -38,12 +38,15 @@ QT_MOC_LITERAL(4, 44, 5), // "index"
 QT_MOC_LITERAL(5, 50, 11), // "createGroup"
 QT_MOC_LITERAL(6, 62, 15), // "QList<quint16>*"
 QT_MOC_LITERAL(7, 78, 7), // "indexes"
-QT_MOC_LITERAL(8, 86, 10) // "leaveGroup"
+QT_MOC_LITERAL(8, 86, 10), // "leaveGroup"
+QT_MOC_LITERAL(9, 97, 8), // "openChat"
+QT_MOC_LITERAL(10, 106, 13) // "openGroupChat"
 
     },
     "ContactsPresenter\0addContact\0\0"
     "removeContact\0index\0createGroup\0"
-    "QList<quint16>*\0indexes\0leaveGroup"
+    "QList<quint16>*\0indexes\0leaveGroup\0"
+    "openChat\0openGroupChat"
 };
 #undef QT_MOC_LITERAL
 
@@ -53,7 +56,7 @@ static const uint qt_meta_data_ContactsPresenter[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -61,15 +64,19 @@ static const uint qt_meta_data_ContactsPresenter[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   34,    2, 0x0a /* Public */,
-       3,    1,   35,    2, 0x0a /* Public */,
-       5,    1,   38,    2, 0x0a /* Public */,
-       8,    1,   41,    2, 0x0a /* Public */,
+       1,    0,   44,    2, 0x0a /* Public */,
+       3,    1,   45,    2, 0x0a /* Public */,
+       5,    1,   48,    2, 0x0a /* Public */,
+       8,    1,   51,    2, 0x0a /* Public */,
+       9,    1,   54,    2, 0x0a /* Public */,
+      10,    1,   57,    2, 0x0a /* Public */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void, QMetaType::UShort,    4,
     QMetaType::Void, 0x80000000 | 6,    7,
+    QMetaType::Void, QMetaType::UShort,    4,
+    QMetaType::Void, QMetaType::UShort,    4,
     QMetaType::Void, QMetaType::UShort,    4,
 
        0        // eod
@@ -85,6 +92,8 @@ void ContactsPresenter::qt_static_metacall(QObject *_o, QMetaObject::Call _c, in
         case 1: _t->removeContact((*reinterpret_cast< quint16(*)>(_a[1]))); break;
         case 2: _t->createGroup((*reinterpret_cast< QList<quint16>*(*)>(_a[1]))); break;
         case 3: _t->leaveGroup((*reinterpret_cast< quint16(*)>(_a[1]))); break;
+        case 4: _t->openChat((*reinterpret_cast< quint16(*)>(_a[1]))); break;
+        case 5: _t->openGroupChat((*reinterpret_cast< quint16(*)>(_a[1]))); break;
         default: ;
         }
     }
@@ -115,13 +124,13 @@ int ContactsPresenter::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 6;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 6)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 4;
+        _id -= 6;
     }
     return _id;
 }

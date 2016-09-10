@@ -3,6 +3,8 @@
 #include "addcontactdialog.h"
 #include "chatsmodel.h"
 #include "groupchatsmodel.h"
+#include "chatdialogpresenter.h"
+#include "groupchatdialogpresenter.h"
 
 #include <QDebug>
 
@@ -138,4 +140,14 @@ void Contacts::on_pushButton_23_clicked()
     QItemSelection selected = ui->tableView_6->selectionModel()->selection();
 
     emit leaveGroup(selected.indexes().at(0).row());
+}
+
+void Contacts::on_tableView_5_doubleClicked(const QModelIndex &index)
+{
+    emit openChat(index.row());
+}
+
+void Contacts::on_tableView_6_doubleClicked(const QModelIndex &index)
+{
+    emit openGroupChat(index.row());
 }

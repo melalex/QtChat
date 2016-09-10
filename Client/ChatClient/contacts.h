@@ -30,6 +30,9 @@ signals:
     void createGroup(QList<quint16> *indexes);
     void leaveGroup(quint16 index);
 
+    void openChat(quint16 index);
+    void openGroupChat(quint16 index);
+
 private slots:
     void chatSelectionChanged();
     void groupChatSelectionChanged(const QItemSelection &selection);
@@ -40,6 +43,9 @@ private slots:
     void on_pushButton_20_clicked();
 
     void on_pushButton_23_clicked();
+
+    void on_tableView_5_doubleClicked(const QModelIndex &index);
+    void on_tableView_6_doubleClicked(const QModelIndex &index);
 
 private:
     Ui::Contacts *ui;

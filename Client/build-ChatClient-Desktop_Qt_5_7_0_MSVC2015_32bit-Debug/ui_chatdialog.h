@@ -43,6 +43,8 @@ public:
         plainTextEdit = new QPlainTextEdit(ChatDialog);
         plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
         plainTextEdit->setGeometry(QRect(10, 30, 371, 191));
+        plainTextEdit->setUndoRedoEnabled(false);
+        plainTextEdit->setReadOnly(true);
         plainTextEdit_2 = new QPlainTextEdit(ChatDialog);
         plainTextEdit_2->setObjectName(QStringLiteral("plainTextEdit_2"));
         plainTextEdit_2->setGeometry(QRect(10, 230, 291, 41));

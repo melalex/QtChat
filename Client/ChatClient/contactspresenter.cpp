@@ -7,6 +7,8 @@
 #include "user.h"
 #include "groupchatsmodel.h"
 #include "group.h"
+#include "chatdialogpresenter.h"
+#include "groupchatdialogpresenter.h"
 
 #include <QHeaderView>
 #include <QInputDialog>
@@ -22,6 +24,9 @@ ContactsPresenter::ContactsPresenter(QObject *parent) : QObject(parent)
 
     connect(_contacts, SIGNAL(createGroup(QList<quint16>*)), this, SLOT(createGroup(QList<quint16>*)));
     connect(_contacts, SIGNAL(leaveGroup(quint16)), this, SLOT(leaveGroup(quint16)));
+
+    connect(_contacts, SIGNAL(openChat(quint16)), this, SLOT(openChat(quint16)));
+    connect(_contacts, SIGNAL(openGroupChat(quint16)), this, SLOT(openGroupChat(quint16)));
 }
 
 ContactsPresenter::~ContactsPresenter()
@@ -52,6 +57,24 @@ AddContactDialogPresenter *ContactsPresenter::getAddContactDialog()
         _addContactDialog = new AddContactDialogPresenter(_model, _connectionMenager, this);
     }
     return _addContactDialog;
+}
+
+GroupChatDialogPresenter *ContactsPresenter::getGroupChatDialogPresenter()
+{
+    if (!_groupChatDialogPresenter)
+    {
+        _groupChatDialogPresenter = new GroupChatDialogPresenter(this);
+    }
+    return _groupChatDialogPresenter;
+}
+
+ChatDialogPresenter *ContactsPresenter::getChatDialogPresenter()
+{
+    if (!_chatDialogPresenter)
+    {
+        _chatDialogPresenter = new ChatDialogPresenter(this);
+    }
+    return _chatDialogPresenter;
 }
 
 void ContactsPresenter::addContact()
@@ -90,4 +113,15 @@ void ContactsPresenter::createGroup(QList<quint16> *indexes)
 void ContactsPresenter::leaveGroup(quint16 index)
 {
     _model->removeGroupChat(index);
+}
+
+void ContactsPresenter::openChat(quint16 index)
+{
+    getChatDialogPresenter()->setGroup(_model->chats()->at(index));
+    getChatDialogPresenter()->showWindow();
+}
+
+void ContactsPresenter::openGroupChat(quint16 index)
+{
+
 }

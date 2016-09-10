@@ -2253,6 +2253,9 @@ debug\contacts.obj: ..\ChatClient\contacts.cpp ../ChatClient/contacts.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QList \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QString \
 		../ChatClient/groupchatsmodel.h \
+		../ChatClient/chatdialogpresenter.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QObject \
+		../ChatClient/groupchatdialogpresenter.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QDebug
 
 debug\addcontactdialog.obj: ..\ChatClient\addcontactdialog.cpp ../ChatClient/addcontactdialog.h \
@@ -2373,7 +2376,9 @@ debug\addcontactdialog.obj: ..\ChatClient\addcontactdialog.cpp ../ChatClient/add
 		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\qtabbar.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\qtabwidget.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\qrubberband.h \
-		ui_addcontactdialog.h
+		ui_addcontactdialog.h \
+		../ChatClient/possiblecontactsmodel.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QAbstractTableModel
 
 debug\chatdialog.obj: ..\ChatClient\chatdialog.cpp ../ChatClient/chatdialog.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\QDialog \
@@ -3089,7 +3094,69 @@ debug\chatdialogpresenter.obj: ..\ChatClient\chatdialogpresenter.cpp ../ChatClie
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qmetatype.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qvarlengtharray.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qcontainerfwd.h \
-		..\..\..\Qt\5.7\msvc2015\include\QtCore\qobject_impl.h
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qobject_impl.h \
+		../ChatClient/chatdialog.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\QDialog \
+		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\qdialog.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\qwidget.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qwindowdefs.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qwindowdefs_win.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qmargins.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qpaintdevice.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qrect.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qsize.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qpoint.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qpalette.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qcolor.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qrgb.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qrgba64.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qbrush.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qvector.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qmatrix.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qpolygon.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qregion.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qdatastream.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qiodevice.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qline.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qtransform.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qpainterpath.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qimage.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qpixelformat.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qpixmap.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qsharedpointer.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qshareddata.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qhash.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qsharedpointer_impl.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qfont.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qfontmetrics.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qfontinfo.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\qsizepolicy.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qcursor.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qkeysequence.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qevent.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qvariant.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qmap.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qdebug.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qtextstream.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qlocale.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qset.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qcontiguouscache.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qurl.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qurlquery.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qfile.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qfiledevice.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qvector2d.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qtouchdevice.h \
+		../ChatClient/group.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QtGlobal \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QList \
+		../ChatClient/user.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QHash \
+		../ChatClient/message.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QString \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QDateTime \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qdatetime.h \
+		../ChatClient/connectionmenager.h
 
 debug\contactspresenter.obj: ..\ChatClient\contactspresenter.cpp ../ChatClient/contactspresenter.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QObject \
@@ -3223,6 +3290,8 @@ debug\contactspresenter.obj: ..\ChatClient\contactspresenter.cpp ../ChatClient/c
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QHash \
 		../ChatClient/groupchatsmodel.h \
 		../ChatClient/group.h \
+		../ChatClient/chatdialogpresenter.h \
+		../ChatClient/groupchatdialogpresenter.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\QHeaderView \
 		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\qheaderview.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\QInputDialog \
