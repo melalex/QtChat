@@ -29,7 +29,7 @@ public:
     QList<Group *> *getChats();
     QList<Group *> *getGroupChats();
 
-    QList<User *> *getPossibleContacts(QString loginPart);
+    void getPossibleContacts(QString loginPart);
 
 signals:
     void logged();
@@ -37,6 +37,8 @@ signals:
 
     void registered();
     void notRegistered();
+
+    void possibleContacts(QList<User *> *users);
 
     void addChat(Group *chat);
     void addGroupChat(Group *chat);
