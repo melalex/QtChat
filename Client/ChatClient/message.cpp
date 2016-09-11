@@ -1,10 +1,15 @@
 #include "message.h"
 #include "user.h"
 
-Message::Message(const QDateTime &time, const QString &text, User *sender, Group *group) :
-    _time(time), _text(text), _sender(sender), _group(group)
+Message::Message(const QDateTime &time, const QString &text, User *sender) :
+    _time(time), _text(text), _sender(sender)
 {
 
+}
+
+void Message::setGroup(Group *group)
+{
+    _group = group;
 }
 
 QDateTime Message::getTime() const

@@ -64,5 +64,5 @@ void ChatDialogPresenter::messageAdded(Message *message)
 
 void ChatDialogPresenter::messageAdded(QString message)
 {
-    _group->addMessage(new Message(QDateTime::currentDateTime(), message, ConnectionMenager::currentUser(), _group));
+    _group->addMessage(new Message(QDateTime::currentDateTime(), message, ConnectionMenager::currentUser()));
 }

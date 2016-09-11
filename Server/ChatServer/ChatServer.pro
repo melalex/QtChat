@@ -1,5 +1,6 @@
 QT += core \
-    network
+    network \
+    sql
 QT -= gui
 
 CONFIG += c++11
@@ -12,9 +13,11 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     chatserver.cpp \
-    client.cpp
+    client.cpp \
+    datastore.cpp
 
 HEADERS += \
     chatserver.h \
     client.h \
-    ../../protocol.h
+    ../../protocol.h \
+    datastore.h

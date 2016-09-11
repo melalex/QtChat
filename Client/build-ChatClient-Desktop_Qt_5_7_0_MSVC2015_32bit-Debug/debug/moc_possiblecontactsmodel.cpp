@@ -21,7 +21,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_PossibleContactsModel_t {
     QByteArrayData data[5];
-    char stringdata0[63];
+    char stringdata0[69];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,12 +33,12 @@ static const qt_meta_stringdata_PossibleContactsModel_t qt_meta_stringdata_Possi
 QT_MOC_LITERAL(0, 0, 21), // "PossibleContactsModel"
 QT_MOC_LITERAL(1, 22, 19), // "setPossibleContacts"
 QT_MOC_LITERAL(2, 42, 0), // ""
-QT_MOC_LITERAL(3, 43, 13), // "QList<User*>*"
-QT_MOC_LITERAL(4, 57, 5) // "users"
+QT_MOC_LITERAL(3, 43, 19), // "const QList<User*>*"
+QT_MOC_LITERAL(4, 63, 5) // "users"
 
     },
     "PossibleContactsModel\0setPossibleContacts\0"
-    "\0QList<User*>*\0users"
+    "\0const QList<User*>*\0users"
 };
 #undef QT_MOC_LITERAL
 
@@ -70,7 +70,7 @@ void PossibleContactsModel::qt_static_metacall(QObject *_o, QMetaObject::Call _c
         PossibleContactsModel *_t = static_cast<PossibleContactsModel *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->setPossibleContacts((*reinterpret_cast< QList<User*>*(*)>(_a[1]))); break;
+        case 0: _t->setPossibleContacts((*reinterpret_cast< const QList<User*>*(*)>(_a[1]))); break;
         default: ;
         }
     }

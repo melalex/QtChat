@@ -10,12 +10,14 @@ class Group;
 class Message
 {
 public:
-    Message(const QDateTime &time, const QString &text, User *sender, Group *group);
+    Message(const QDateTime &time, const QString &text, User *sender);
 
+    void setGroup(Group *group);
+
+    Group *getGroup() const;
     QDateTime getTime() const;
     QString getText() const;
     User *getSender() const;
-    Group *getGroup() const;
 
     QString toString() const;
 

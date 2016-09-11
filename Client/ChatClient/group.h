@@ -18,6 +18,7 @@ public:
 
     quint32 getId() const;
     QString getName() const;
+
     const QList<User *> *getMembers() const;
     const QList<Message *> *getMessages() const;
 

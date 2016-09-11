@@ -38,7 +38,7 @@ public slots:
     void addChat(Group *chat);
     void addGroupChat(Group *chat);
 
-    void addMessageToGroup(Message *message, quint32 groupId);
+    void addMessageToGroup(quint32 senderId, quint32 groupId, quint64 time, QString text);
 
 private:
     QList<Group *> *_chats = nullptr;

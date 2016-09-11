@@ -19,8 +19,8 @@ protected:
     void incomingConnection(int handle);
 
 private slots:
-    void signUp(QString login, QString password);
-    void signIn(QString login, QString password);
+    void signUp(Client *client, QString login, QString password);
+    void signIn(Client *client, QString login, QString password);
 
     void getContacts(Client *client);
     void getGroups(Client *client);

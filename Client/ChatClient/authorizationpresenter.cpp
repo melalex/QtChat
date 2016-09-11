@@ -5,10 +5,14 @@
 #include "contactspresenter.h"
 
 #include <QMessageBox>
+#include <QInputDialog>
+#include <QApplication>
 
-AuthorizationPresenter::AuthorizationPresenter(QObject *parent) : QObject(parent)
+AuthorizationPresenter::AuthorizationPresenter(QObject *parent) :
+    QObject(parent)
 {
     _authorization = new Authorization();
+
     connect(_authorization, SIGNAL(signIn(QString,QString)), this, SLOT(signIn(QString,QString)));
     connect(_authorization, SIGNAL(signUp()), this, SLOT(signUp()));
 }
@@ -38,6 +42,32 @@ void AuthorizationPresenter::setConnectionMenager(ConnectionMenager *connectionM
 
     connect(_connectionMenager, SIGNAL(logged()), this, SLOT(logged()));
     connect(_connectionMenager, SIGNAL(notLogged()), this, SLOT(notLogged()));
+    connect(_connectionMenager, SIGNAL(connectionFail()), this, SLOT(showHostSelectDialog()));
+
+    showHostSelectDialog();
+}
+
+void AuthorizationPresenter::showHostSelectDialog()
+{
+    _authorization->lockUI();
+
+    bool ok;
+    QString name = QInputDialog::getText(_authorization, QString("Set host name"),
+                                                         QString("Host name:"),
+                                                         QLineEdit::Normal,
+                                                         QString("127.0.0.1"),
+                                                         &ok);
+    if (ok && !name.isEmpty())
+    {
+        _connectionMenager->connectToHost(name);
+        _authorization->unLockUI();
+    }
+    else
+    {
+        _authorization->close();
+        qApp->quit();
+        qApp->exit();
+    }
 }
 
 RegistrationPresenter *AuthorizationPresenter::getRegistrationWindow()
@@ -45,6 +75,7 @@ RegistrationPresenter *AuthorizationPresenter::getRegistrationWindow()
     if (!_registrationWindow)
     {
         _registrationWindow = new RegistrationPresenter();
+        _registrationWindow->setConnectionMenager(_connectionMenager);
     }
     return _registrationWindow;
 }
@@ -84,6 +115,7 @@ void AuthorizationPresenter::logged()
 void AuthorizationPresenter::notLogged()
 {
     _authorization->clearInput();
+    _authorization->unLockUI();
 
     QMessageBox msgBox;
     msgBox.setText("Incorrect login or password");

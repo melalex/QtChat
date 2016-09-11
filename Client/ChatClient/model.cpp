@@ -2,6 +2,7 @@
 #include "group.h"
 #include "user.h"
 #include "connectionmenager.h"
+#include "message.h"
 
 Model::Model(QObject *parent) : QObject(parent)
 {
@@ -63,9 +64,9 @@ void Model::setConnectionMenager(ConnectionMenager *connectionMenager)
            SLOT(addGroupChat(Group*)));
 
    connect(_connectionMenager,
-           SIGNAL(addMessageToGroup(Message*,quint32)),
+           SIGNAL(addMessageToGroup(quint32,quint32,quint64,QString)),
            this,
-           SLOT(addMessageToGroup(Message*,quint32)));
+           SLOT(addMessageToGroup(quint32,quint32,quint64,QString)));
 }
 
 void Model::createChat(User *user)
@@ -128,8 +129,11 @@ void Model::removeGroupChat(quint16 index)
     delete chat;
 }
 
-void Model::addMessageToGroup(Message *message, quint32 groupId)
+void Model::addMessageToGroup(quint32 senderId, quint32 groupId, quint64 time, QString text)
 {
+    User *user = UserCreator::getInstance().userById(senderId);
+    Message *message = new Message(QDateTime::fromMSecsSinceEpoch(time), text, user);
+
     for (Group *group: *_chats)
     {
         if (group->getId() == groupId)

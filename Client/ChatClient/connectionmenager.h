@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QList>
+#include <QTcpSocket>
 
 class Group;
 class User;
@@ -15,6 +16,8 @@ class ConnectionMenager : public QObject
 public:
     explicit ConnectionMenager(QObject *parent = 0);
     ~ConnectionMenager();
+
+    void connectToHost(QString hostName);
 
     static User *currentUser();
 
@@ -36,6 +39,8 @@ public slots:
     void sendMessage(Message *message);
 
 signals:
+    void connectionFail();
+
     void logged();
     void notLogged();
 
@@ -47,10 +52,19 @@ signals:
     void addChat(Group *chat);
     void addGroupChat(Group *chat);
 
-    void addMessageToGroup(Message *message, quint32 groupId);
+    void addMessageToGroup(quint32 senderId, quint32 groupId, quint64 time, QString text);
+
+private slots:
+    void onSokConnected();
+    void onSokDisconnected();
+    void onSokReadyRead();
+    void onSokDisplayError(QAbstractSocket::SocketError socketError);
 
 private:
     static User *_currentUser;
+
+    QTcpSocket *_socket;
+    quint16 _blockSize = 0;
 };
 
 #endif // CONNECTIONMENAGER_H

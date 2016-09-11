@@ -13,6 +13,7 @@ public:
     static UserCreator& getInstance();
 
     User* createUser(quint32 id, QString login);
+    User* userById(quint32 id);
 
 private:
     QHash<quint32, User *> _usersPool;

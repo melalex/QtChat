@@ -3,6 +3,7 @@
 
 #include <QDebug>
 #include <QDateTime>
+#include <QDir>
 
 ChatServer::ChatServer(QObject *parent) :
     QTcpServer(parent)
@@ -14,6 +15,7 @@ void ChatServer::startServer(QHostAddress addr, qint16 port)
 {
     if (listen(addr, port))
     {
+        qDebug() << QDir::currentPath();
         qDebug() << "Server started at" << QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm");
         qDebug() << "Listening on" << addr << ": " << port;
         qDebug() << "Press Ctrl-C to quit.";
@@ -28,9 +30,8 @@ void ChatServer::incomingConnection(int handle)
 {
     Client *client = new Client(handle, this);
 
-    connect(client, SIGNAL(signUp(QString,QString)), this, SLOT(signUp(QString,QString)));
-    connect(client, SIGNAL(signIn(QString,QString)), this, SLOT(signIn(QString,QString)));
-    connect(client, SIGNAL(getContacts(Client*)), this, SLOT(getContacts(Client*)));
+    connect(client, SIGNAL(signUp(Client*,QString,QString)), this, SLOT(signUp(Client*,QString,QString)));
+    connect(client, SIGNAL(signIn(Client*,QString,QString)), this, SLOT(signIn(Client*,QString,QString)));
     connect(client, SIGNAL(getGroups(Client*)), this, SLOT(getGroups(Client*)));
     connect(client, SIGNAL(getUser(Client*,quint32)), this, SLOT(getUser(Client*,quint32)));
     connect(client, SIGNAL(getMessages(Client*,quint32)), this, SLOT(getMessages(Client*,quint32)));
@@ -42,59 +43,71 @@ void ChatServer::incomingConnection(int handle)
     connect(client, SIGNAL(clientDisconected(quint32)), this, SLOT(clientDisconected(quint32)));
 }
 
-void ChatServer::signUp(QString login, QString password)
+void ChatServer::signUp(Client *client, QString login, QString password)
 {
-
+    qDebug() << "Client try to sign up with login " << login << " and password " << password;
 }
 
-void ChatServer::signIn(QString login, QString password)
+void ChatServer::signIn(Client *client, QString login, QString password)
 {
+    qDebug() << "["  << QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm") << "]"
+             << "Client try to sign in with login " << login << " and password " << password;
 
+    client->loged(0);
 }
 
 void ChatServer::getContacts(Client *client)
 {
-
+    qDebug() << "["  << QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm") << "]"
+             << "Client with id " << client->id() << " request contacts";
 }
 
 void ChatServer::getGroups(Client *client)
 {
-
+    qDebug() << "["  << QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm") << "]"
+             << "Client with id " << client->id() << " request groups";
 }
 
 void ChatServer::getUser(Client *client, quint32 userId)
 {
-
+    qDebug() << "["  << QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm") << "]"
+             << "Client with id " << client->id() << " request user with id " << userId;
 }
 
 void ChatServer::getMessages(Client *client, quint32 groupId)
 {
-
+    qDebug() << "["  << QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm") << "]"
+             << "Client with id " << client->id() << " request messages from group with id " << groupId;
 }
 
 void ChatServer::getPossibleContacts(Client *client, QString loginPart)
 {
-
+    qDebug() << "["  << QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm") << "]"
+             << "Client with id " << client->id() << " request possible contacts with logit part " << loginPart;
 }
 
 void ChatServer::sendMessage(quint32 senderId, quint32 groupId, QString text)
 {
-
+    qDebug() << "["  << QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm") << "]"
+             << "Client with id " << senderId << " send message to group with id " << groupId;
 }
 
 void ChatServer::addContact(Client *client, quint32 interlocutorId)
 {
-
+    qDebug() << "["  << QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm") << "]"
+             << "Client with id " << client->id() << " added to friends user with id " << interlocutorId;
 }
 
 void ChatServer::createGroup(Client *client, QString name, const QList<quint32> &members)
 {
-
+    qDebug() << "["  << QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm") << "]"
+             << "Client with id " << client->id() << " create group with name " << name;
 }
 
 void ChatServer::liveGroup(quint32 clientId, quint32 groupId)
 {
-
+    qDebug() << "["  << QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm") << "]"
+             << "Client with id " << clientId << " left group with id " << groupId;
 }
 
 void ChatServer::clientDisconected(quint32 id)

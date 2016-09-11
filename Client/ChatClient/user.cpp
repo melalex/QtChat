@@ -50,3 +50,8 @@ User* UserCreator::createUser(quint32 id, QString login)
 
     return result;
 }
+
+User* UserCreator::userById(quint32 id)
+{
+    return _usersPool.take(id);
+}

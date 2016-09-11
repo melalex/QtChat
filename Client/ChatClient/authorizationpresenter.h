@@ -30,6 +30,8 @@ public slots:
     void logged();
     void notLogged();
 
+    void showHostSelectDialog();
+
 private:
     Authorization *_authorization;
     ConnectionMenager *_connectionMenager;
@@ -37,6 +39,7 @@ private:
     ContactsPresenter *_contacts;
 
     RegistrationPresenter *getRegistrationWindow();
+
 };
 
 #endif // AUTHORIZATIONPRESENTER_H

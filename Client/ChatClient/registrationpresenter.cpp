@@ -44,6 +44,7 @@ void RegistrationPresenter::registerANewUser(QString login, QString password, QS
     else
     {
         _registration->clearInput();
+        _registration->unLockUI();
 
         QMessageBox msgBox;
         msgBox.setText("Incorrect input");
@@ -54,11 +55,13 @@ void RegistrationPresenter::registerANewUser(QString login, QString password, QS
 
 void RegistrationPresenter::registered()
 {
+    _registration->unLockUI();
     _registration->close();
 }
 
 void RegistrationPresenter::notRegistered()
 {
+    _registration->unLockUI();
     _registration->clearInput();
 
     QMessageBox msgBox;

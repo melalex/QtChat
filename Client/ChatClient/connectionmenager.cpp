@@ -2,18 +2,151 @@
 #include "user.h"
 #include "group.h"
 #include "message.h"
+#include "C:\Chat\protocol.h"
+
+#include <QDateTime>
+#include <QDataStream>
 
 User *ConnectionMenager::_currentUser = nullptr;
 
 ConnectionMenager::ConnectionMenager(QObject *parent) :
     QObject(parent)
 {
+    _socket = new QTcpSocket(this);
 
+    connect(_socket, SIGNAL(readyRead()), this, SLOT(onSokReadyRead()));
+    connect(_socket, SIGNAL(connected()), this, SLOT(onSokConnected()));
+    connect(_socket, SIGNAL(disconnected()), this, SLOT(onSokDisconnected()));
+    connect(_socket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(onSokDisplayError(QAbstractSocket::SocketError)));
 }
 
 ConnectionMenager::~ConnectionMenager()
 {
+    _socket->disconnectFromHost();
+}
 
+void ConnectionMenager::onSokConnected()
+{
+
+}
+
+void ConnectionMenager::onSokDisconnected()
+{
+
+}
+
+void ConnectionMenager::onSokReadyRead()
+{
+    QDataStream in(_socket);
+
+    if (_blockSize == 0 && _socket->bytesAvailable() >= (int)sizeof(quint16))
+    {
+        in >> _blockSize;
+    }
+
+    if (_socket->bytesAvailable() >= _blockSize)
+    {
+        _blockSize = 0;
+        quint8 command;
+
+        in >> command;
+
+        switch(command)
+        {
+            case REGISTERED:
+            {
+                emit registered();
+            }
+            break;
+
+            case NOT_REGISTERED:
+            {
+                emit notRegistered();
+            }
+            break;
+
+            case LOGED:
+            {
+                emit logged();
+            }
+            break;
+
+            case NOT_LOGED:
+            {
+                notLogged();
+            }
+            break;
+
+            case NEW_MESSAGE:
+            {
+                quint32 senderId;
+                quint32 groupId;
+                quint64 time;
+                QString text;
+
+                in >> senderId;
+                in >> groupId;
+                in >> time;
+                in >> text;
+
+                emit addMessageToGroup(senderId, groupId, time, text);
+            }
+            break;
+
+            case NEW_USER:
+            {
+                quint32 userId;
+                QString login;
+
+                in >> userId;
+                in >> login;
+
+                UserCreator::getInstance().createUser(userId, login);
+            }
+            break;
+
+            case NEW_CONTACT:
+            {
+                quint32 userId;
+                quint32 interlocutorId;
+
+                in >> userId;
+                in >> interlocutorId;
+            }
+            break;
+
+            case NEW_GROUP:
+            {
+
+            }
+            break;
+
+            case POSSIBLE_CONTACTS_LIST:
+            {
+
+            }
+            break;
+        }
+    }
+}
+
+void ConnectionMenager::onSokDisplayError(QAbstractSocket::SocketError socketError)
+{
+    switch (socketError)
+    {
+        case QAbstractSocket::HostNotFoundError:
+            connectionFail();
+            break;
+
+        default:
+            qDebug() << "The following error occurred: " << _socket->errorString();
+            break;
+    }
+}
+
+void ConnectionMenager::connectToHost(QString hostName)
+{
+    _socket->connectToHost(hostName, 8000);
 }
 
 User *ConnectionMenager::currentUser()
@@ -23,42 +156,133 @@ User *ConnectionMenager::currentUser()
 
 void ConnectionMenager::signUp(QString login, QString password)
 {
-    registered();
+    QByteArray block;
+    QDataStream out(&block, QIODevice::WriteOnly);
+    out << (quint16)0;
+
+    out << (quint8)SIGN_UP;
+    out << login;
+    out << password;
+
+    out.device()->seek(0);
+
+    out << (quint16)(block.size() - sizeof(quint16));
+
+    _socket->write(block);
 }
 
 void ConnectionMenager::signIn(QString login, QString password)
 {
     _currentUser = UserCreator::getInstance().createUser(0, "Me");
-    logged();
+
+    QByteArray block;
+    QDataStream out(&block, QIODevice::WriteOnly);
+    out << (quint16)0;
+
+    out << (quint8)SIGN_IN;
+    out << login;
+    out << password;
+
+    out.device()->seek(0);
+
+    out << (quint16)(block.size() - sizeof(quint16));
+
+    _socket->write(block);
 }
 
 void ConnectionMenager::addContact(User *user)
 {
+    QByteArray block;
+    QDataStream out(&block, QIODevice::WriteOnly);
+    out << (quint16)0;
 
+    out << (quint8)ADD_CONTACT;
+    out << user->getId();
+
+    out.device()->seek(0);
+
+    out << (quint16)(block.size() - sizeof(quint16));
+
+    _socket->write(block);
 }
 
 void ConnectionMenager::createGroupChat(QList<User *> users, QString name)
 {
+    QByteArray block;
+    QDataStream out(&block, QIODevice::WriteOnly);
+    out << (quint16)0;
 
+
+    out.device()->seek(0);
+
+    out << (quint16)(block.size() - sizeof(quint16));
+
+    _socket->write(block);
 }
 
 void ConnectionMenager::removeContact(Group *chat)
 {
+    QByteArray block;
+    QDataStream out(&block, QIODevice::WriteOnly);
+    out << (quint16)0;
 
+    out << (quint8)LIVE_GROUP;
+    out << chat->getId();
+
+    out.device()->seek(0);
+
+    out << (quint16)(block.size() - sizeof(quint16));
+
+    _socket->write(block);
 }
 
 void ConnectionMenager::removeGroupChat(Group *chat)
 {
+    QByteArray block;
+    QDataStream out(&block, QIODevice::WriteOnly);
+    out << (quint16)0;
 
+    out << (quint8)LIVE_GROUP;
+    out << chat->getId();
+
+    out.device()->seek(0);
+
+    out << (quint16)(block.size() - sizeof(quint16));
+
+    _socket->write(block);
 }
 
 void ConnectionMenager::sendMessage(Message *message)
 {
+    QByteArray block;
+    QDataStream out(&block, QIODevice::WriteOnly);
+    out << (quint16)0;
 
+    out << (quint8)SEND_MESSAGE;
+    out << message->getGroup()->getId();
+    out << message->getText();
+
+    out.device()->seek(0);
+
+    out << (quint16)(block.size() - sizeof(quint16));
+
+    _socket->write(block);
 }
 
 QList<Group *> *ConnectionMenager::getChats()
 {
+    QByteArray block;
+    QDataStream out(&block, QIODevice::WriteOnly);
+    out << (quint16)0;
+
+    out << (quint8)GET_CONTACTS;
+
+    out.device()->seek(0);
+
+    out << (quint16)(block.size() - sizeof(quint16));
+
+    _socket->write(block);
+
     QList<Group *> *result = new QList<Group *>();
 
     User *user1 = UserCreator::getInstance().createUser(1, "User1");
@@ -93,6 +317,18 @@ QList<Group *> *ConnectionMenager::getChats()
 
 QList<Group *> *ConnectionMenager::getGroupChats()
 {
+    QByteArray block;
+    QDataStream out(&block, QIODevice::WriteOnly);
+    out << (quint16)0;
+
+    out << (quint8)GET_GROUPS;
+
+    out.device()->seek(0);
+
+    out << (quint16)(block.size() - sizeof(quint16));
+
+    _socket->write(block);
+
     QList<Group *> *result = new QList<Group *>();
 
     User *user5 = UserCreator::getInstance().createUser(5, "User5");
@@ -113,6 +349,18 @@ QList<Group *> *ConnectionMenager::getGroupChats()
 
 void ConnectionMenager::getPossibleContacts(QString loginPart)
 {
+    QByteArray block;
+    QDataStream out(&block, QIODevice::WriteOnly);
+    out << (quint16)0;
+
+    out << (quint8)GET_POSSIBLE_CONTACTS;
+
+    out.device()->seek(0);
+
+    out << (quint16)(block.size() - sizeof(quint16));
+
+    _socket->write(block);
+
     QList<User *> *result = new QList<User *>();
 
     User *user8 = UserCreator::getInstance().createUser(8, "User8");

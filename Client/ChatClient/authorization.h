@@ -17,6 +17,9 @@ public:
 
     void clearInput();
 
+    void lockUI();
+    void unLockUI();
+
 signals:
     void signUp();
     void signIn(QString login, QString password);

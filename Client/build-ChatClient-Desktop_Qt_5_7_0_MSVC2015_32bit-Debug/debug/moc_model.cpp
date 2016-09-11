@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_Model_t {
-    QByteArrayData data[15];
-    char stringdata0[143];
+    QByteArrayData data[16];
+    char stringdata0[145];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -41,16 +41,17 @@ QT_MOC_LITERAL(8, 62, 16), // "groupChatRemoved"
 QT_MOC_LITERAL(9, 79, 7), // "addChat"
 QT_MOC_LITERAL(10, 87, 12), // "addGroupChat"
 QT_MOC_LITERAL(11, 100, 17), // "addMessageToGroup"
-QT_MOC_LITERAL(12, 118, 8), // "Message*"
-QT_MOC_LITERAL(13, 127, 7), // "message"
-QT_MOC_LITERAL(14, 135, 7) // "groupId"
+QT_MOC_LITERAL(12, 118, 8), // "senderId"
+QT_MOC_LITERAL(13, 127, 7), // "groupId"
+QT_MOC_LITERAL(14, 135, 4), // "time"
+QT_MOC_LITERAL(15, 140, 4) // "text"
 
     },
     "Model\0chatAdded\0\0Group*\0chat\0"
     "groupChatAdded\0chatRemoved\0index\0"
     "groupChatRemoved\0addChat\0addGroupChat\0"
-    "addMessageToGroup\0Message*\0message\0"
-    "groupId"
+    "addMessageToGroup\0senderId\0groupId\0"
+    "time\0text"
 };
 #undef QT_MOC_LITERAL
 
@@ -76,7 +77,7 @@ static const uint qt_meta_data_Model[] = {
  // slots: name, argc, parameters, tag, flags
        9,    1,   61,    2, 0x0a /* Public */,
       10,    1,   64,    2, 0x0a /* Public */,
-      11,    2,   67,    2, 0x0a /* Public */,
+      11,    4,   67,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
@@ -87,7 +88,7 @@ static const uint qt_meta_data_Model[] = {
  // slots: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
     QMetaType::Void, 0x80000000 | 3,    4,
-    QMetaType::Void, 0x80000000 | 12, QMetaType::UInt,   13,   14,
+    QMetaType::Void, QMetaType::UInt, QMetaType::UInt, QMetaType::ULongLong, QMetaType::QString,   12,   13,   14,   15,
 
        0        // eod
 };
@@ -104,7 +105,7 @@ void Model::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void 
         case 3: _t->groupChatRemoved((*reinterpret_cast< quint16(*)>(_a[1]))); break;
         case 4: _t->addChat((*reinterpret_cast< Group*(*)>(_a[1]))); break;
         case 5: _t->addGroupChat((*reinterpret_cast< Group*(*)>(_a[1]))); break;
-        case 6: _t->addMessageToGroup((*reinterpret_cast< Message*(*)>(_a[1])),(*reinterpret_cast< quint32(*)>(_a[2]))); break;
+        case 6: _t->addMessageToGroup((*reinterpret_cast< quint32(*)>(_a[1])),(*reinterpret_cast< quint32(*)>(_a[2])),(*reinterpret_cast< quint64(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {

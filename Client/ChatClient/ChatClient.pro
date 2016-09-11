@@ -55,7 +55,8 @@ HEADERS  += \
     groupchatdialogpresenter.h \
     chatsmodel.h \
     groupchatsmodel.h \
-    possiblecontactsmodel.h
+    possiblecontactsmodel.h \
+    ../../protocol.h
 
 FORMS    += \
     authorization.ui \

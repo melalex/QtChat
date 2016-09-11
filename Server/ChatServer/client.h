@@ -11,13 +11,15 @@ public:
     explicit Client(qint32 descriptor, QObject *parent = 0);
     ~Client();
 
+    quint32 id() const;
+
     void loged(quint32 userId);
     void notLoged();
 
     void registered();
     void notRegistered();
 
-    void newMessage(quint32 senderId, quint64 time, QString text);
+    void newMessage(quint32 senderId, quint32 groupId, quint64 time, QString text);
     void newUser(quint32 userId, QString login);
     void newContact(quint32 groupId, quint32 interlocutorId);
     void newGroup(quint32 groupId, QString name, const QList<quint32> &members);
@@ -25,10 +27,9 @@ public:
     void possibleContactList();
 
 signals:
-    void signUp(QString login, QString password);
-    void signIn(QString login, QString password);
+    void signUp(Client *client, QString login, QString password);
+    void signIn(Client *client, QString login, QString password);
 
-    void getContacts(Client *client);
     void getGroups(Client *client);
     void getUser(Client *client, quint32 userId);
     void getMessages(Client *client, quint32 groupId);
@@ -52,7 +53,8 @@ public slots:
 private:
     QTcpSocket *_socket;
     quint16 _blockSize = 0;
-    quint32 _id = 0;
+    quint32 _id;
+    bool _isAutched = false;
 };
 
 #endif // CLIENT_H

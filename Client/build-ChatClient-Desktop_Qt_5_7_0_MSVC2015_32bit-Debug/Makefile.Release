@@ -144,7 +144,8 @@ DIST          =  ..\ChatClient\user.h \
 		..\ChatClient\groupchatdialogpresenter.h \
 		..\ChatClient\chatsmodel.h \
 		..\ChatClient\groupchatsmodel.h \
-		..\ChatClient\possiblecontactsmodel.h ..\ChatClient\main.cpp \
+		..\ChatClient\possiblecontactsmodel.h \
+		..\..\protocol.h ..\ChatClient\main.cpp \
 		..\ChatClient\user.cpp \
 		..\ChatClient\message.cpp \
 		..\ChatClient\group.cpp \
@@ -1044,6 +1045,23 @@ release\moc_connectionmenager.cpp: ..\..\..\Qt\5.7\msvc2015\include\QtCore\QObje
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qcontainerfwd.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qobject_impl.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QList \
+		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\QTcpSocket \
+		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\qtcpsocket.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\qabstractsocket.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qiodevice.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qdebug.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qhash.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qmap.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qtextstream.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qlocale.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qvariant.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qshareddata.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qvector.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qpoint.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qset.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qcontiguouscache.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qsharedpointer.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qsharedpointer_impl.h \
 		..\ChatClient\connectionmenager.h \
 		..\..\..\Qt\5.7\msvc2015\bin\moc.exe
 	C:\Qt\5.7\msvc2015\bin\moc.exe $(DEFINES) -D_MSC_VER=1900 -D_WIN32 -IC:/Qt/5.7/msvc2015/mkspecs/win32-msvc2015 -IC:/Chat/Client/ChatClient -IC:/Qt/5.7/msvc2015/include -IC:/Qt/5.7/msvc2015/include/QtWidgets -IC:/Qt/5.7/msvc2015/include/QtGui -IC:/Qt/5.7/msvc2015/include/QtANGLE -IC:/Qt/5.7/msvc2015/include/QtNetwork -IC:/Qt/5.7/msvc2015/include/QtCore -I. ..\ChatClient\connectionmenager.h -o release\moc_connectionmenager.cpp
@@ -1709,13 +1727,29 @@ release\main.obj: ..\ChatClient\main.cpp ../ChatClient/authorizationpresenter.h 
 		../ChatClient/contactspresenter.h \
 		../ChatClient/connectionmenager.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QList \
+		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\QTcpSocket \
+		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\qtcpsocket.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\qabstractsocket.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qiodevice.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qdebug.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qhash.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qmap.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qtextstream.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qlocale.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qvariant.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qshareddata.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qvector.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qpoint.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qset.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qcontiguouscache.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qsharedpointer.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qsharedpointer_impl.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\QApplication \
 		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\qapplication.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qcoreapplication.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qeventloop.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtGui\qwindowdefs.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtGui\qwindowdefs_win.h \
-		..\..\..\Qt\5.7\msvc2015\include\QtCore\qpoint.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qsize.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtGui\qcursor.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\qdesktopwidget.h \
@@ -1728,35 +1762,22 @@ release\main.obj: ..\ChatClient\main.cpp ../ChatClient/authorizationpresenter.h 
 		..\..\..\Qt\5.7\msvc2015\include\QtGui\qrgb.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtGui\qrgba64.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtGui\qbrush.h \
-		..\..\..\Qt\5.7\msvc2015\include\QtCore\qvector.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtGui\qmatrix.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtGui\qpolygon.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtGui\qregion.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qdatastream.h \
-		..\..\..\Qt\5.7\msvc2015\include\QtCore\qiodevice.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qline.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtGui\qtransform.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtGui\qpainterpath.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtGui\qimage.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtGui\qpixelformat.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtGui\qpixmap.h \
-		..\..\..\Qt\5.7\msvc2015\include\QtCore\qsharedpointer.h \
-		..\..\..\Qt\5.7\msvc2015\include\QtCore\qshareddata.h \
-		..\..\..\Qt\5.7\msvc2015\include\QtCore\qhash.h \
-		..\..\..\Qt\5.7\msvc2015\include\QtCore\qsharedpointer_impl.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtGui\qfont.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtGui\qfontmetrics.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtGui\qfontinfo.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\qsizepolicy.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtGui\qkeysequence.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtGui\qevent.h \
-		..\..\..\Qt\5.7\msvc2015\include\QtCore\qvariant.h \
-		..\..\..\Qt\5.7\msvc2015\include\QtCore\qmap.h \
-		..\..\..\Qt\5.7\msvc2015\include\QtCore\qdebug.h \
-		..\..\..\Qt\5.7\msvc2015\include\QtCore\qtextstream.h \
-		..\..\..\Qt\5.7\msvc2015\include\QtCore\qlocale.h \
-		..\..\..\Qt\5.7\msvc2015\include\QtCore\qset.h \
-		..\..\..\Qt\5.7\msvc2015\include\QtCore\qcontiguouscache.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qurl.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qurlquery.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qfile.h \
@@ -2632,16 +2653,34 @@ release\connectionmenager.obj: ..\ChatClient\connectionmenager.cpp ../ChatClient
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qcontainerfwd.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qobject_impl.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QList \
+		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\QTcpSocket \
+		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\qtcpsocket.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\qabstractsocket.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qiodevice.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qdebug.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qhash.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qmap.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qtextstream.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qlocale.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qvariant.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qshareddata.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qvector.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qpoint.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qset.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qcontiguouscache.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qsharedpointer.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qsharedpointer_impl.h \
 		../ChatClient/user.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QtGlobal \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QHash \
-		..\..\..\Qt\5.7\msvc2015\include\QtCore\qhash.h \
 		../ChatClient/group.h \
 		../ChatClient/message.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QString \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QDateTime \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qdatetime.h \
-		..\..\..\Qt\5.7\msvc2015\include\QtCore\qshareddata.h
+		C:\Chat\protocol.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QDataStream \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qdatastream.h
 
 release\model.obj: ..\ChatClient\model.cpp ../ChatClient/model.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QObject \
@@ -2698,7 +2737,27 @@ release\model.obj: ..\ChatClient\model.cpp ../ChatClient/model.h \
 		../ChatClient/user.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QHash \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qhash.h \
-		../ChatClient/connectionmenager.h
+		../ChatClient/connectionmenager.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\QTcpSocket \
+		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\qtcpsocket.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\qabstractsocket.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qiodevice.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qdebug.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qmap.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qtextstream.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qlocale.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qvariant.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qshareddata.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qvector.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qpoint.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qset.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qcontiguouscache.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qsharedpointer.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qsharedpointer_impl.h \
+		../ChatClient/message.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QString \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QDateTime \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qdatetime.h
 
 release\authorizationpresenter.obj: ..\ChatClient\authorizationpresenter.cpp ../ChatClient/authorizationpresenter.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QObject \
@@ -2802,11 +2861,29 @@ release\authorizationpresenter.obj: ..\ChatClient\authorizationpresenter.cpp ../
 		..\..\..\Qt\5.7\msvc2015\include\QtGui\qtouchdevice.h \
 		../ChatClient/connectionmenager.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QList \
+		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\QTcpSocket \
+		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\qtcpsocket.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\qabstractsocket.h \
 		../ChatClient/registrationpresenter.h \
 		../ChatClient/contactspresenter.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\QMessageBox \
 		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\qmessagebox.h \
-		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\qdialog.h
+		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\qdialog.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\QInputDialog \
+		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\qinputdialog.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\qlineedit.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\qframe.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qtextcursor.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qtextformat.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qpen.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qtextoption.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\QApplication \
+		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\qapplication.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qcoreapplication.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qeventloop.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\qdesktopwidget.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qguiapplication.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qinputmethod.h
 
 release\registrationpresenter.obj: ..\ChatClient\registrationpresenter.cpp ../ChatClient/registrationpresenter.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QObject \
@@ -2911,6 +2988,9 @@ release\registrationpresenter.obj: ..\ChatClient\registrationpresenter.cpp ../Ch
 		..\..\..\Qt\5.7\msvc2015\include\QtGui\qtouchdevice.h \
 		../ChatClient/connectionmenager.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QList \
+		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\QTcpSocket \
+		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\qtcpsocket.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\qabstractsocket.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\QMessageBox \
 		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\qmessagebox.h
 
@@ -3036,6 +3116,9 @@ release\addcontactdialogpresenter.obj: ..\ChatClient\addcontactdialogpresenter.c
 		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\qrubberband.h \
 		../ChatClient/connectionmenager.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QList \
+		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\QTcpSocket \
+		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\qtcpsocket.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\qabstractsocket.h \
 		../ChatClient/model.h \
 		../ChatClient/group.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QtGlobal \
@@ -3156,7 +3239,10 @@ release\chatdialogpresenter.obj: ..\ChatClient\chatdialogpresenter.cpp ../ChatCl
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QString \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QDateTime \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qdatetime.h \
-		../ChatClient/connectionmenager.h
+		../ChatClient/connectionmenager.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\QTcpSocket \
+		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\qtcpsocket.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\qabstractsocket.h
 
 release\contactspresenter.obj: ..\ChatClient\contactspresenter.cpp ../ChatClient/contactspresenter.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QObject \
@@ -3285,6 +3371,9 @@ release\contactspresenter.obj: ..\ChatClient\contactspresenter.cpp ../ChatClient
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QAbstractTableModel \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QString \
 		../ChatClient/connectionmenager.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\QTcpSocket \
+		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\qtcpsocket.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\qabstractsocket.h \
 		../ChatClient/user.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QtGlobal \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QHash \
@@ -3351,7 +3440,75 @@ release\groupchatdialogpresenter.obj: ..\ChatClient\groupchatdialogpresenter.cpp
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qmetatype.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qvarlengtharray.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qcontainerfwd.h \
-		..\..\..\Qt\5.7\msvc2015\include\QtCore\qobject_impl.h
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qobject_impl.h \
+		../ChatClient/groupchatdialog.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\QDialog \
+		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\qdialog.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\qwidget.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qwindowdefs.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qwindowdefs_win.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qmargins.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qpaintdevice.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qrect.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qsize.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qpoint.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qpalette.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qcolor.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qrgb.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qrgba64.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qbrush.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qvector.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qmatrix.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qpolygon.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qregion.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qdatastream.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qiodevice.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qline.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qtransform.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qpainterpath.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qimage.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qpixelformat.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qpixmap.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qsharedpointer.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qshareddata.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qhash.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qsharedpointer_impl.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qfont.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qfontmetrics.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qfontinfo.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\qsizepolicy.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qcursor.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qkeysequence.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qevent.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qvariant.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qmap.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qdebug.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qtextstream.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qlocale.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qset.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qcontiguouscache.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qurl.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qurlquery.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qfile.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qfiledevice.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qvector2d.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qtouchdevice.h \
+		../ChatClient/group.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QtGlobal \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QList \
+		../ChatClient/user.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QHash \
+		../ChatClient/message.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QString \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QDateTime \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qdatetime.h \
+		../ChatClient/connectionmenager.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\QTcpSocket \
+		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\qtcpsocket.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\qabstractsocket.h \
+		../ChatClient/possiblecontactsmodel.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QAbstractTableModel \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qabstractitemmodel.h
 
 release\chatsmodel.obj: ..\ChatClient\chatsmodel.cpp ../ChatClient/chatsmodel.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QAbstractTableModel \

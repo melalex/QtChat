@@ -72,5 +72,5 @@ void GroupChatDialogPresenter::messageAdded(Message *message)
 
 void GroupChatDialogPresenter::messageAdded(QString message)
 {
-    _group->addMessage(new Message(QDateTime::currentDateTime(), message, ConnectionMenager::currentUser(), _group));
+    _group->addMessage(new Message(QDateTime::currentDateTime(), message, ConnectionMenager::currentUser()));
 }

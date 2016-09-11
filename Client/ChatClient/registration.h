@@ -15,6 +15,9 @@ public:
     explicit Registration(QWidget *parent = 0);
     ~Registration();
 
+    void lockUI();
+    void unLockUI();
+
     void clearInput();
 
 signals:

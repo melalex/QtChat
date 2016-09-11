@@ -54,6 +54,7 @@ void Group::removeMember(User *user)
 
 void Group::addMessage(Message *message)
 {
+    message->setGroup(this);
     _messages->append(message);
 
     emit messageAdded(message);

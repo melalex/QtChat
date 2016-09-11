@@ -20,8 +20,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_AddContactDialogPresenter_t {
-    QByteArrayData data[10];
-    char stringdata0[131];
+    QByteArrayData data[11];
+    char stringdata0[151];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,18 +33,20 @@ static const qt_meta_stringdata_AddContactDialogPresenter_t qt_meta_stringdata_A
 QT_MOC_LITERAL(0, 0, 25), // "AddContactDialogPresenter"
 QT_MOC_LITERAL(1, 26, 19), // "setPossibleContacts"
 QT_MOC_LITERAL(2, 46, 0), // ""
-QT_MOC_LITERAL(3, 47, 13), // "QList<User*>*"
-QT_MOC_LITERAL(4, 61, 5), // "users"
-QT_MOC_LITERAL(5, 67, 19), // "getPossibleContacts"
-QT_MOC_LITERAL(6, 87, 9), // "loginPart"
-QT_MOC_LITERAL(7, 97, 10), // "addContact"
-QT_MOC_LITERAL(8, 108, 5), // "index"
-QT_MOC_LITERAL(9, 114, 16) // "possibleContacts"
+QT_MOC_LITERAL(3, 47, 19), // "const QList<User*>*"
+QT_MOC_LITERAL(4, 67, 5), // "users"
+QT_MOC_LITERAL(5, 73, 19), // "getPossibleContacts"
+QT_MOC_LITERAL(6, 93, 9), // "loginPart"
+QT_MOC_LITERAL(7, 103, 10), // "addContact"
+QT_MOC_LITERAL(8, 114, 5), // "index"
+QT_MOC_LITERAL(9, 120, 16), // "possibleContacts"
+QT_MOC_LITERAL(10, 137, 13) // "QList<User*>*"
 
     },
     "AddContactDialogPresenter\0setPossibleContacts\0"
-    "\0QList<User*>*\0users\0getPossibleContacts\0"
-    "loginPart\0addContact\0index\0possibleContacts"
+    "\0const QList<User*>*\0users\0"
+    "getPossibleContacts\0loginPart\0addContact\0"
+    "index\0possibleContacts\0QList<User*>*"
 };
 #undef QT_MOC_LITERAL
 
@@ -75,7 +77,7 @@ static const uint qt_meta_data_AddContactDialogPresenter[] = {
  // slots: parameters
     QMetaType::Void, QMetaType::QString,    6,
     QMetaType::Void, QMetaType::UShort,    8,
-    QMetaType::Void, 0x80000000 | 3,    4,
+    QMetaType::Void, 0x80000000 | 10,    4,
 
        0        // eod
 };
@@ -86,7 +88,7 @@ void AddContactDialogPresenter::qt_static_metacall(QObject *_o, QMetaObject::Cal
         AddContactDialogPresenter *_t = static_cast<AddContactDialogPresenter *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->setPossibleContacts((*reinterpret_cast< QList<User*>*(*)>(_a[1]))); break;
+        case 0: _t->setPossibleContacts((*reinterpret_cast< const QList<User*>*(*)>(_a[1]))); break;
         case 1: _t->getPossibleContacts((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 2: _t->addContact((*reinterpret_cast< quint16(*)>(_a[1]))); break;
         case 3: _t->possibleContacts((*reinterpret_cast< QList<User*>*(*)>(_a[1]))); break;
@@ -96,7 +98,7 @@ void AddContactDialogPresenter::qt_static_metacall(QObject *_o, QMetaObject::Cal
         int *result = reinterpret_cast<int *>(_a[0]);
         void **func = reinterpret_cast<void **>(_a[1]);
         {
-            typedef void (AddContactDialogPresenter::*_t)(QList<User*> * );
+            typedef void (AddContactDialogPresenter::*_t)(const QList<User*> * );
             if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&AddContactDialogPresenter::setPossibleContacts)) {
                 *result = 0;
                 return;
@@ -142,7 +144,7 @@ int AddContactDialogPresenter::qt_metacall(QMetaObject::Call _c, int _id, void *
 }
 
 // SIGNAL 0
-void AddContactDialogPresenter::setPossibleContacts(QList<User*> * _t1)
+void AddContactDialogPresenter::setPossibleContacts(const QList<User*> * _t1)
 {
     void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);

@@ -42,6 +42,8 @@ public:
         plainTextEdit = new QPlainTextEdit(GroupChatDialog);
         plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
         plainTextEdit->setGeometry(QRect(10, 30, 371, 191));
+        plainTextEdit->setUndoRedoEnabled(false);
+        plainTextEdit->setReadOnly(true);
         label = new QLabel(GroupChatDialog);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(10, 10, 371, 16));
