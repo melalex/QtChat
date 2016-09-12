@@ -255,7 +255,7 @@ void ConnectionMenager::createGroupChat(QList<User *> users, QString name)
     
     for (User *user: users)
     {
-        out <<         
+        out << user->getId();        
     }
     
     out.device()->seek(0);
@@ -312,10 +312,37 @@ void ConnectionMenager::getUserById(quint32 id)
     out << (quint16)(block.size() - sizeof(quint16));
 
     _socket->write(block);
+}
+
+void ConnectionMenager::getMessages(quint32 groupId)
+{
+    QByteArray block;
+    QDataStream out(&block, QIODevice::WriteOnly);
+    out << (quint16)0;
+
+    out << (quint8)GET_MESSAGES;
+    out << groupId;
+
+    out.device()->seek(0);
+
+    out << (quint16)(block.size() - sizeof(quint16));
+
+    _socket->write(block);
 
 }
 
 void ConnectionMenager::getPossibleContacts(QString loginPart)
 {
+    QByteArray block;
+    QDataStream out(&block, QIODevice::WriteOnly);
+    out << (quint16)0;
 
+    out << (quint8)GET_POSSIBLE_CONTACTS;
+    out << loginPart;
+
+    out.device()->seek(0);
+
+    out << (quint16)(block.size() - sizeof(quint16));
+
+    _socket->write(block);    
 }

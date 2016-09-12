@@ -30,6 +30,7 @@ public:
     void liveGroup(Group *chat);
 
     void getUserById(quint32 id);
+    void getMessages(quint32 groupId);
     void getPossibleContacts(QString loginPart);
 
 public slots:
