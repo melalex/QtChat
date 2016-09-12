@@ -140,8 +140,10 @@ void ConnectionMenager::onSokDisplayError(QAbstractSocket::SocketError socketErr
 {
     switch (socketError)
     {
+        case QAbstractSocket::RemoteHostClosedError:
         case QAbstractSocket::HostNotFoundError:
-            connectionFail();
+        case QAbstractSocket::ConnectionRefusedError:
+            connectionFail(_socket->errorString());
             break;
 
         default:

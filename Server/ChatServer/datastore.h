@@ -22,20 +22,20 @@ public slots:
 private:
     QSqlDatabase _dataBase;
 
-    QSqlQuery _isUserExistQuery;
+    QString _isUserExistQuery;
 
-    QSqlQuery _selectFromUsersWithLoginQuery;
-    QSqlQuery _selectFromUsersWithIdQuery;
+    QString _selectFromUsersWithLoginQuery;
+    QString _selectFromUsersWithIdQuery;
 
-    QSqlQuery _insertToUsersQuery;
-    QSqlQuery _insertToGroupsQuery;
-    QSqlQuery _insertToMessagesQuery;
-    QSqlQuery _insertToGroupTransferQuery;
+    QString _insertToUsersQuery;
+    QString _insertToGroupsQuery;
+    QString _insertToMessagesQuery;
+    QString _insertToGroupTransferQuery;
 
-    QSqlQuery _deleteFromUsersQuery;
-    QSqlQuery _deleteFromGroupsQuery;
-    QSqlQuery _deleteFromMessagesQuery;
-    QSqlQuery _deleteFromGroupTransferQuery;
+    QString _deleteFromUsersQuery;
+    QString _deleteFromGroupsQuery;
+    QString _deleteFromMessagesQuery;
+    QString _deleteFromGroupTransferQuery;
 
 
 };

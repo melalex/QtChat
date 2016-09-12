@@ -171,8 +171,16 @@ void Client::onReadyRead()
 
 void Client::onError(QAbstractSocket::SocketError socketError) const
 {
-    qDebug() << "["  << QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm") << "]"
-             << "The following error occurred: " << _socket->errorString();
+    switch (socketError)
+    {
+        case QAbstractSocket::RemoteHostClosedError:
+            break;
+
+        default:
+            qDebug() << "["  << QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm") << "]"
+                 << "The following error occurred: " << _socket->errorString();
+            break;
+    }
 }
 
 void Client::loged(quint32 userId)

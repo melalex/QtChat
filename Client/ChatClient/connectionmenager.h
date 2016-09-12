@@ -39,7 +39,7 @@ public slots:
     void sendMessage(Message *message);
 
 signals:
-    void connectionFail();
+    void connectionFail(QString socketError);
 
     void logged();
     void notLogged();

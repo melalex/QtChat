@@ -132,9 +132,5 @@ void ChatServer::liveGroup(quint32 clientId, quint32 groupId)
 
 void ChatServer::clientDisconected(quint32 id)
 {
-    Client *client = _clients.take(id);
-
     _clients.remove(id);
-
-    delete client;
 }

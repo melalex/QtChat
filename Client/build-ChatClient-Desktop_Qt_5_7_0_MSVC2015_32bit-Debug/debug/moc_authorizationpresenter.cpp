@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_AuthorizationPresenter_t {
-    QByteArrayData data[9];
-    char stringdata0[91];
+    QByteArrayData data[10];
+    char stringdata0[98];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -37,12 +37,13 @@ QT_MOC_LITERAL(4, 38, 5), // "login"
 QT_MOC_LITERAL(5, 44, 8), // "password"
 QT_MOC_LITERAL(6, 53, 6), // "logged"
 QT_MOC_LITERAL(7, 60, 9), // "notLogged"
-QT_MOC_LITERAL(8, 70, 20) // "showHostSelectDialog"
+QT_MOC_LITERAL(8, 70, 20), // "showHostSelectDialog"
+QT_MOC_LITERAL(9, 91, 6) // "header"
 
     },
     "AuthorizationPresenter\0signUp\0\0signIn\0"
     "login\0password\0logged\0notLogged\0"
-    "showHostSelectDialog"
+    "showHostSelectDialog\0header"
 };
 #undef QT_MOC_LITERAL
 
@@ -64,14 +65,14 @@ static const uint qt_meta_data_AuthorizationPresenter[] = {
        3,    2,   40,    2, 0x0a /* Public */,
        6,    0,   45,    2, 0x0a /* Public */,
        7,    0,   46,    2, 0x0a /* Public */,
-       8,    0,   47,    2, 0x0a /* Public */,
+       8,    1,   47,    2, 0x0a /* Public */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void, QMetaType::QString, QMetaType::QString,    4,    5,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,    9,
 
        0        // eod
 };
@@ -86,7 +87,7 @@ void AuthorizationPresenter::qt_static_metacall(QObject *_o, QMetaObject::Call _
         case 1: _t->signIn((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
         case 2: _t->logged(); break;
         case 3: _t->notLogged(); break;
-        case 4: _t->showHostSelectDialog(); break;
+        case 4: _t->showHostSelectDialog((*reinterpret_cast< QString(*)>(_a[1]))); break;
         default: ;
         }
     }

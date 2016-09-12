@@ -42,17 +42,17 @@ void AuthorizationPresenter::setConnectionMenager(ConnectionMenager *connectionM
 
     connect(_connectionMenager, SIGNAL(logged()), this, SLOT(logged()));
     connect(_connectionMenager, SIGNAL(notLogged()), this, SLOT(notLogged()));
-    connect(_connectionMenager, SIGNAL(connectionFail()), this, SLOT(showHostSelectDialog()));
+    connect(_connectionMenager, SIGNAL(connectionFail(QString)), this, SLOT(showHostSelectDialog(QString)));
 
-    showHostSelectDialog();
+    showHostSelectDialog("Set host name");
 }
 
-void AuthorizationPresenter::showHostSelectDialog()
+void AuthorizationPresenter::showHostSelectDialog(QString header)
 {
     _authorization->lockUI();
 
     bool ok;
-    QString name = QInputDialog::getText(_authorization, QString("Set host name"),
+    QString name = QInputDialog::getText(_authorization, QString(header),
                                                          QString("Host name:"),
                                                          QLineEdit::Normal,
                                                          QString("127.0.0.1"),

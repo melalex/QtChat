@@ -30,7 +30,7 @@ public slots:
     void logged();
     void notLogged();
 
-    void showHostSelectDialog();
+    void showHostSelectDialog(QString header);
 
 private:
     Authorization *_authorization;

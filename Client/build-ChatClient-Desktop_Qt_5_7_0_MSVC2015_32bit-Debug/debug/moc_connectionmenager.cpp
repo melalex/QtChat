@@ -33,42 +33,42 @@ static const qt_meta_stringdata_ConnectionMenager_t qt_meta_stringdata_Connectio
 QT_MOC_LITERAL(0, 0, 17), // "ConnectionMenager"
 QT_MOC_LITERAL(1, 18, 14), // "connectionFail"
 QT_MOC_LITERAL(2, 33, 0), // ""
-QT_MOC_LITERAL(3, 34, 6), // "logged"
-QT_MOC_LITERAL(4, 41, 9), // "notLogged"
-QT_MOC_LITERAL(5, 51, 10), // "registered"
-QT_MOC_LITERAL(6, 62, 13), // "notRegistered"
-QT_MOC_LITERAL(7, 76, 16), // "possibleContacts"
-QT_MOC_LITERAL(8, 93, 13), // "QList<User*>*"
-QT_MOC_LITERAL(9, 107, 5), // "users"
-QT_MOC_LITERAL(10, 113, 7), // "addChat"
-QT_MOC_LITERAL(11, 121, 6), // "Group*"
-QT_MOC_LITERAL(12, 128, 4), // "chat"
-QT_MOC_LITERAL(13, 133, 12), // "addGroupChat"
-QT_MOC_LITERAL(14, 146, 17), // "addMessageToGroup"
-QT_MOC_LITERAL(15, 164, 8), // "senderId"
-QT_MOC_LITERAL(16, 173, 7), // "groupId"
-QT_MOC_LITERAL(17, 181, 4), // "time"
-QT_MOC_LITERAL(18, 186, 4), // "text"
-QT_MOC_LITERAL(19, 191, 11), // "sendMessage"
-QT_MOC_LITERAL(20, 203, 8), // "Message*"
-QT_MOC_LITERAL(21, 212, 7), // "message"
-QT_MOC_LITERAL(22, 220, 14), // "onSokConnected"
-QT_MOC_LITERAL(23, 235, 17), // "onSokDisconnected"
-QT_MOC_LITERAL(24, 253, 14), // "onSokReadyRead"
-QT_MOC_LITERAL(25, 268, 17), // "onSokDisplayError"
-QT_MOC_LITERAL(26, 286, 28), // "QAbstractSocket::SocketError"
-QT_MOC_LITERAL(27, 315, 11) // "socketError"
+QT_MOC_LITERAL(3, 34, 11), // "socketError"
+QT_MOC_LITERAL(4, 46, 6), // "logged"
+QT_MOC_LITERAL(5, 53, 9), // "notLogged"
+QT_MOC_LITERAL(6, 63, 10), // "registered"
+QT_MOC_LITERAL(7, 74, 13), // "notRegistered"
+QT_MOC_LITERAL(8, 88, 16), // "possibleContacts"
+QT_MOC_LITERAL(9, 105, 13), // "QList<User*>*"
+QT_MOC_LITERAL(10, 119, 5), // "users"
+QT_MOC_LITERAL(11, 125, 7), // "addChat"
+QT_MOC_LITERAL(12, 133, 6), // "Group*"
+QT_MOC_LITERAL(13, 140, 4), // "chat"
+QT_MOC_LITERAL(14, 145, 12), // "addGroupChat"
+QT_MOC_LITERAL(15, 158, 17), // "addMessageToGroup"
+QT_MOC_LITERAL(16, 176, 8), // "senderId"
+QT_MOC_LITERAL(17, 185, 7), // "groupId"
+QT_MOC_LITERAL(18, 193, 4), // "time"
+QT_MOC_LITERAL(19, 198, 4), // "text"
+QT_MOC_LITERAL(20, 203, 11), // "sendMessage"
+QT_MOC_LITERAL(21, 215, 8), // "Message*"
+QT_MOC_LITERAL(22, 224, 7), // "message"
+QT_MOC_LITERAL(23, 232, 14), // "onSokConnected"
+QT_MOC_LITERAL(24, 247, 17), // "onSokDisconnected"
+QT_MOC_LITERAL(25, 265, 14), // "onSokReadyRead"
+QT_MOC_LITERAL(26, 280, 17), // "onSokDisplayError"
+QT_MOC_LITERAL(27, 298, 28) // "QAbstractSocket::SocketError"
 
     },
     "ConnectionMenager\0connectionFail\0\0"
-    "logged\0notLogged\0registered\0notRegistered\0"
-    "possibleContacts\0QList<User*>*\0users\0"
-    "addChat\0Group*\0chat\0addGroupChat\0"
-    "addMessageToGroup\0senderId\0groupId\0"
-    "time\0text\0sendMessage\0Message*\0message\0"
-    "onSokConnected\0onSokDisconnected\0"
-    "onSokReadyRead\0onSokDisplayError\0"
-    "QAbstractSocket::SocketError\0socketError"
+    "socketError\0logged\0notLogged\0registered\0"
+    "notRegistered\0possibleContacts\0"
+    "QList<User*>*\0users\0addChat\0Group*\0"
+    "chat\0addGroupChat\0addMessageToGroup\0"
+    "senderId\0groupId\0time\0text\0sendMessage\0"
+    "Message*\0message\0onSokConnected\0"
+    "onSokDisconnected\0onSokReadyRead\0"
+    "onSokDisplayError\0QAbstractSocket::SocketError"
 };
 #undef QT_MOC_LITERAL
 
@@ -86,40 +86,40 @@ static const uint qt_meta_data_ConnectionMenager[] = {
        9,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   84,    2, 0x06 /* Public */,
-       3,    0,   85,    2, 0x06 /* Public */,
-       4,    0,   86,    2, 0x06 /* Public */,
-       5,    0,   87,    2, 0x06 /* Public */,
-       6,    0,   88,    2, 0x06 /* Public */,
-       7,    1,   89,    2, 0x06 /* Public */,
-      10,    1,   92,    2, 0x06 /* Public */,
-      13,    1,   95,    2, 0x06 /* Public */,
-      14,    4,   98,    2, 0x06 /* Public */,
+       1,    1,   84,    2, 0x06 /* Public */,
+       4,    0,   87,    2, 0x06 /* Public */,
+       5,    0,   88,    2, 0x06 /* Public */,
+       6,    0,   89,    2, 0x06 /* Public */,
+       7,    0,   90,    2, 0x06 /* Public */,
+       8,    1,   91,    2, 0x06 /* Public */,
+      11,    1,   94,    2, 0x06 /* Public */,
+      14,    1,   97,    2, 0x06 /* Public */,
+      15,    4,  100,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-      19,    1,  107,    2, 0x0a /* Public */,
-      22,    0,  110,    2, 0x08 /* Private */,
-      23,    0,  111,    2, 0x08 /* Private */,
-      24,    0,  112,    2, 0x08 /* Private */,
-      25,    1,  113,    2, 0x08 /* Private */,
+      20,    1,  109,    2, 0x0a /* Public */,
+      23,    0,  112,    2, 0x08 /* Private */,
+      24,    0,  113,    2, 0x08 /* Private */,
+      25,    0,  114,    2, 0x08 /* Private */,
+      26,    1,  115,    2, 0x08 /* Private */,
 
  // signals: parameters
+    QMetaType::Void, QMetaType::QString,    3,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 8,    9,
-    QMetaType::Void, 0x80000000 | 11,   12,
-    QMetaType::Void, 0x80000000 | 11,   12,
-    QMetaType::Void, QMetaType::UInt, QMetaType::UInt, QMetaType::ULongLong, QMetaType::QString,   15,   16,   17,   18,
+    QMetaType::Void, 0x80000000 | 9,   10,
+    QMetaType::Void, 0x80000000 | 12,   13,
+    QMetaType::Void, 0x80000000 | 12,   13,
+    QMetaType::Void, QMetaType::UInt, QMetaType::UInt, QMetaType::ULongLong, QMetaType::QString,   16,   17,   18,   19,
 
  // slots: parameters
-    QMetaType::Void, 0x80000000 | 20,   21,
+    QMetaType::Void, 0x80000000 | 21,   22,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 26,   27,
+    QMetaType::Void, 0x80000000 | 27,    3,
 
        0        // eod
 };
@@ -130,7 +130,7 @@ void ConnectionMenager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, in
         ConnectionMenager *_t = static_cast<ConnectionMenager *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->connectionFail(); break;
+        case 0: _t->connectionFail((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 1: _t->logged(); break;
         case 2: _t->notLogged(); break;
         case 3: _t->registered(); break;
@@ -161,7 +161,7 @@ void ConnectionMenager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, in
         int *result = reinterpret_cast<int *>(_a[0]);
         void **func = reinterpret_cast<void **>(_a[1]);
         {
-            typedef void (ConnectionMenager::*_t)();
+            typedef void (ConnectionMenager::*_t)(QString );
             if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&ConnectionMenager::connectionFail)) {
                 *result = 0;
                 return;
@@ -263,9 +263,10 @@ int ConnectionMenager::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void ConnectionMenager::connectionFail()
+void ConnectionMenager::connectionFail(QString _t1)
 {
-    QMetaObject::activate(this, &staticMetaObject, 0, Q_NULLPTR);
+    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 
 // SIGNAL 1
