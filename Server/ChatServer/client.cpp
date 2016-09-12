@@ -188,31 +188,67 @@ void Client::loged(quint32 userId)
     out << (quint16)0;
 
     out << (quint8)LOGED;
+    out << userId;
 
     out.device()->seek(0);
 
     out << (quint16)(block.size() - sizeof(quint16));
 
     _socket->write(block);
-
 }
 
 void Client::notLoged()
 {
     qDebug() << "["  << QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm") << "]"
              << "Client not loged";
+
+    QByteArray block;
+    QDataStream out(&block, QIODevice::WriteOnly);
+    out << (quint16)0;
+
+    out << (quint8)NOT_LOGED;
+
+    out.device()->seek(0);
+
+    out << (quint16)(block.size() - sizeof(quint16));
+
+    _socket->write(block);
 }
 
 void Client::registered()
 {
     qDebug() << "["  << QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm") << "]"
              << "Client registered";
+
+    QByteArray block;
+    QDataStream out(&block, QIODevice::WriteOnly);
+    out << (quint16)0;
+
+    out << (quint8)REGISTERED;
+
+    out.device()->seek(0);
+
+    out << (quint16)(block.size() - sizeof(quint16));
+
+    _socket->write(block);
 }
 
 void Client::notRegistered()
 {
     qDebug() << "["  << QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm") << "]"
              << "Client not registered";
+
+    QByteArray block;
+    QDataStream out(&block, QIODevice::WriteOnly);
+    out << (quint16)0;
+
+    out << (quint8)NOT_REGISTERED;
+
+    out.device()->seek(0);
+
+    out << (quint16)(block.size() - sizeof(quint16));
+
+    _socket->write(block);
 }
 
 void Client::newMessage(quint32 senderId, quint32 groupId, quint64 time, QString text)

@@ -20,4 +20,5 @@ HEADERS += \
     chatserver.h \
     client.h \
     ../../protocol.h \
-    datastore.h
+    datastore.h \
+    models.h

@@ -10,6 +10,11 @@ User::User(quint32 id, QString login) :
 
 }
 
+void User::setId(quint32 id)
+{
+    _id = id;
+}
+
 quint32 User::getId() const
 {
     return _id;

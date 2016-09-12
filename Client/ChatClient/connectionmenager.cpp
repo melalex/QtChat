@@ -67,6 +67,12 @@ void ConnectionMenager::onSokReadyRead()
 
             case LOGED:
             {
+                quint32 userId;
+
+                in >> userId;
+
+                _currentUser->setId(userId);
+
                 emit logged();
             }
             break;
@@ -173,7 +179,7 @@ void ConnectionMenager::signUp(QString login, QString password)
 
 void ConnectionMenager::signIn(QString login, QString password)
 {
-    _currentUser = UserCreator::getInstance().createUser(0, "Me");
+    _currentUser = UserCreator::getInstance().createUser(0, login);
 
     QByteArray block;
     QDataStream out(&block, QIODevice::WriteOnly);
@@ -275,7 +281,7 @@ QList<Group *> *ConnectionMenager::getChats()
     QDataStream out(&block, QIODevice::WriteOnly);
     out << (quint16)0;
 
-    out << (quint8)GET_CONTACTS;
+    out << (quint8)GET_GROUPS;
 
     out.device()->seek(0);
 

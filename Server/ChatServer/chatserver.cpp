@@ -1,5 +1,6 @@
 #include "chatserver.h"
 #include "client.h"
+#include "datastore.h"
 
 #include <QDebug>
 #include <QDateTime>
@@ -8,14 +9,20 @@
 ChatServer::ChatServer(QObject *parent) :
     QTcpServer(parent)
 {
+    _dataStore = new DataStore(this);
+}
 
+ChatServer::~ChatServer()
+{
+    qDeleteAll(_clients);
+
+    delete _dataStore;
 }
 
 void ChatServer::startServer(QHostAddress addr, qint16 port)
 {
     if (listen(addr, port))
     {
-        qDebug() << QDir::currentPath();
         qDebug() << "Server started at" << QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm");
         qDebug() << "Listening on" << addr << ": " << port;
         qDebug() << "Press Ctrl-C to quit.";
@@ -45,7 +52,17 @@ void ChatServer::incomingConnection(int handle)
 
 void ChatServer::signUp(Client *client, QString login, QString password)
 {
-    qDebug() << "Client try to sign up with login " << login << " and password " << password;
+    qDebug() << "["  << QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm") << "]"
+             << "Client try to sign up with login " << login << " and password " << password;
+
+    if (_dataStore->trySignUp(login, password))
+    {
+        client->registered();
+    }
+    else
+    {
+        client->notRegistered();
+    }
 }
 
 void ChatServer::signIn(Client *client, QString login, QString password)
@@ -53,13 +70,16 @@ void ChatServer::signIn(Client *client, QString login, QString password)
     qDebug() << "["  << QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm") << "]"
              << "Client try to sign in with login " << login << " and password " << password;
 
-    client->loged(0);
-}
-
-void ChatServer::getContacts(Client *client)
-{
-    qDebug() << "["  << QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm") << "]"
-             << "Client with id " << client->id() << " request contacts";
+    quint32 id;
+    if (_dataStore->trySignIn(login, password, id))
+    {
+        _clients.insert(id, client);
+        client->loged(id);
+    }
+    else
+    {
+        client->notLoged();
+    }
 }
 
 void ChatServer::getGroups(Client *client)

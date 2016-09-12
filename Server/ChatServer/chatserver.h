@@ -5,6 +5,7 @@
 #include <QHash>
 
 class Client;
+class DataStore;
 
 class ChatServer : public QTcpServer
 {
@@ -12,6 +13,7 @@ class ChatServer : public QTcpServer
 
 public:
     explicit ChatServer(QObject *parent = 0);
+    ~ChatServer();
 
     void startServer(QHostAddress addr, qint16 port);
 
@@ -22,7 +24,6 @@ private slots:
     void signUp(Client *client, QString login, QString password);
     void signIn(Client *client, QString login, QString password);
 
-    void getContacts(Client *client);
     void getGroups(Client *client);
     void getUser(Client *client, quint32 userId);
     void getMessages(Client *client, quint32 groupId);
@@ -38,8 +39,9 @@ private slots:
     void clientDisconected(quint32 id);
 
 private:
-    QHash<quint32, Client *> _clients;
+    DataStore *_dataStore;
 
+    QHash<quint32, Client *> _clients;
 };
 
 #endif // CHATSERVER_H
