@@ -22,7 +22,7 @@ ConnectionMenager::ConnectionMenager(QObject *parent) :
 
 ConnectionMenager::~ConnectionMenager()
 {
-    _socket->disconnectFromHost();
+
 }
 
 void ConnectionMenager::onSokConnected()

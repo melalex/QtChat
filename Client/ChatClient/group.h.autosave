@@ -19,6 +19,8 @@ public:
     quint32 getId() const;
     QString getName() const;
 
+    bool isNoMessages();
+    
     const QList<User *> *getMembers() const;
     const QList<Message *> *getMessages() const;
 

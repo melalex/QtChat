@@ -140,12 +140,18 @@ void ContactsPresenter::leaveGroup(quint16 index)
 
 void ContactsPresenter::openChat(quint16 index)
 {
-    getChatDialogPresenter()->setGroup(_model->chats()->at(index));
+    Group *group = _model->chats()->at(index);
+    
+    getChatDialogPresenter()->setGroup(group);
     getChatDialogPresenter()->showWindow();
 }
 
 void ContactsPresenter::openGroupChat(quint16 index)
 {
-    getGroupChatDialogPresenter()->setGroup(_model->groupChats()->at(index));
+    Group *group = _model->groupChats()->at(index);
+    
+    if (group->isNoMessages())
+    
+    getGroupChatDialogPresenter()->setGroup(group);
     getGroupChatDialogPresenter()->showWindow();
 }
