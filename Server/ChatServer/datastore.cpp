@@ -1,5 +1,7 @@
 #include "datastore.h"
 
+const QString dialogName = "A4B00212-0BC8-47AE-9FD9-ADBED148D269";
+
 DataStore::DataStore(QObject *parent) : QObject(parent)
 {
     _dataBase = QSqlDatabase::addDatabase("QSQLITE");
@@ -7,21 +9,25 @@ DataStore::DataStore(QObject *parent) : QObject(parent)
 
     if (!_dataBase.open())
     {
-        qDebug() << "Error: " << _dataBase.lastError().text();
+        qDebug() << "["  << QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm") << "]"
+                 << "Error: " << _dataBase.lastError().text();
     }
 
     _isUserExistQuery = "SELECT COUNT(login) FROM users WHERE login = :login";
     _membersCountQuery = "SELECT COUNT(group_id) FROM group_transfer WHERE group_id = :group_id";
 
     _selectFromUsersWithLoginQuery = "SELECT _id, password FROM users WHERE login = :login";
-    _selectFromUsersWithLoginPartQuery = "SELECT _id, login FROM users WHERE login LIKE '%:loginPart%'";
+    _selectFromUsersWithLoginPartQuery = "SELECT _id, login FROM users WHERE login LIKE :loginPart";
     _selectFromUsersWithIdQuery = "SELECT login FROM users WHERE _id = :id;";
-    _selectMessagesWithGroupIdQuery = "SELECT sender_id, date_time, text FROM messages WHERE group_id = :groupId";
+    _selectMessagesWithGroupIdQuery = "SELECT sender_id, date_time, text FROM messages WHERE group_id = :groupId  ORDER BY date_time";
     _selectUsersInGroupQuery = "SELECT user_id FROM group_transfer WHERE group_id = :groupId";
+    _selectUsersInGroupExceptQuery = "SELECT user_id FROM group_transfer WHERE group_id = :groupId AND user_id != :userId";
+    _selectGroupsWithUserQuery = "SELECT group_id FROM group_transfer WHERE user_id = :userId";
+    _selectGroupNameQuery = "SELECT name FROM groups WHERE _id = :groupId";
 
     _insertToUsersQuery = "INSERT INTO users(login, password) VALUES (:login, :password)";
     _insertToGroupsQuery = "INSERT INTO groups(name) VALUES (:name);";
-    _insertToMessagesQuery = "INSERT INTO messages(sender_id, group_id, date_time, text) VALUES (:senderId, :groupId, :time, :text) ORDER BY date_time";
+    _insertToMessagesQuery = "INSERT INTO messages(sender_id, group_id, date_time, text) VALUES (:senderId, :groupId, :time, :text)";
     _insertToGroupTransferQuery = "INSERT INTO group_transfer(group_id, user_id) VALUES (:group_id, :user_id)";
 
     _deleteFromGroupsQuery = "DELETE FROM groups WHERE group_id = :groupId";
@@ -141,14 +147,87 @@ quint32 DataStore::createGroup(QString name, const QList<quint32> &members)
     return result;
 }
 
-QList<Dialog *> *DataStore::getDialogs(quint32 userId)
+QPair<QList<Dialog *> *, QList<Group *> *> &DataStore::getGroups(quint32 userId)
 {
-    return nullptr;
-}
+    QList<Dialog *> *dialogs = new QList<Dialog *>();
+    QList<Group *> *groups = new QList<Group *>();
 
-QList<Group *> *DataStore::getGroups(quint32 userId)
-{
-    return nullptr;
+    QSqlQuery userGroupsQuery = QSqlQuery(_dataBase);
+    QSqlQuery groupNameQuery = QSqlQuery(_dataBase);
+    QSqlQuery userIdQuery = QSqlQuery(_dataBase);
+    QSqlQuery userIdExceptUserQuery = QSqlQuery(_dataBase);
+    QSqlQuery userNameQuery = QSqlQuery(_dataBase);
+
+    userGroupsQuery.prepare(_selectGroupsWithUserQuery);
+    groupNameQuery.prepare(_selectGroupNameQuery);
+    userIdQuery.prepare(_selectUsersInGroupQuery);
+    userIdExceptUserQuery.prepare(_selectUsersInGroupExceptQuery);
+    userNameQuery.prepare(_selectFromUsersWithIdQuery);
+
+    userGroupsQuery.bindValue(":userId", userId);
+    userGroupsQuery.exec();
+
+    quint32 groupId;
+    QString groupName;
+    Dialog *dialog;
+    Group *group;
+
+    while (userGroupsQuery.next())
+    {
+        groupId = userGroupsQuery.value(0).toInt();
+
+        groupNameQuery.bindValue(":groupId", groupId);
+        groupNameQuery.exec();
+
+        if (groupNameQuery.next())
+        {
+            groupName = groupNameQuery.value(0).toString();
+            if (QString::compare(groupName, dialogName, Qt::CaseSensitive) == 0)
+            {
+                userIdExceptUserQuery.bindValue(":groupId", groupId);
+                userIdExceptUserQuery.bindValue(":userId", userId);
+                if(!userIdExceptUserQuery.exec())
+                    qDebug() << "userIdExceptUserQuery";
+
+                if (userIdExceptUserQuery.next())
+                {
+                    userNameQuery.bindValue(":id", userIdExceptUserQuery.value(0).toInt());
+                    if(!userNameQuery.exec())
+                        qDebug() << "userNameQuery";
+
+                    if (userNameQuery.next())
+                    {
+                        dialog = new Dialog();
+
+                        dialog->id = groupId;
+                        dialog->interlocutorId = userIdExceptUserQuery.value(0).toInt();
+                        dialog->interlocutorName = userNameQuery.value(0).toString();
+
+                        dialogs->append(dialog);
+                    }
+                }
+            }
+            else
+            {
+                group = new Group();
+
+                group->id = groupId;
+                group->name = groupName;
+
+                userIdQuery.bindValue(":groupId", groupId);
+                userIdQuery.exec();
+
+                while (userIdQuery.next())
+                {
+                    group->members.append(userIdQuery.value(0).toInt());
+                }
+
+                groups->append(group);
+            }
+        }
+    }
+
+    return qMakePair(dialogs, groups);
 }
 
 QString DataStore::getUserById(quint32 id)
@@ -202,7 +281,7 @@ QList<User *> *DataStore::getPossibleContacts(QString loginPart)
     QSqlQuery query = QSqlQuery(_dataBase);
     query.prepare(_selectFromUsersWithLoginPartQuery);
 
-    query.bindValue(":loginPart", loginPart);
+    query.bindValue(":loginPart", '%' + loginPart + '%');
     query.exec();
 
     User *user = nullptr;

@@ -50,6 +50,8 @@ void ContactsPresenter::setConnectionMenager(ConnectionMenager *connectionMenage
     _connectionMenager = connectionMenager;
 
     _model->setConnectionMenager(_connectionMenager);
+
+    connect(_connectionMenager, SIGNAL(connectionFail(QString)), this, SLOT(connectionFail(QString)));
 }
 
 AddContactDialogPresenter *ContactsPresenter::getAddContactDialog()

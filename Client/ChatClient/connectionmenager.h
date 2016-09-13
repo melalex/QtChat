@@ -25,7 +25,7 @@ public:
     void signIn(QString login, QString password);
 
     void addContact(User *user);
-    void createGroupChat(QList<User *> users, QString name);
+    void createGroupChat(const QList<User *> &users, QString name);
 
     void liveGroup(Group *chat);
 

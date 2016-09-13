@@ -110,6 +110,8 @@ void AuthorizationPresenter::logged()
     _contacts->setConnectionMenager(_connectionMenager);
     _contacts->showWindow();
     _authorization->close();
+
+    disconnect(_connectionMenager, SIGNAL(connectionFail(QString)), this, SLOT(showHostSelectDialog(QString)));
 }
 
 void AuthorizationPresenter::notLogged()

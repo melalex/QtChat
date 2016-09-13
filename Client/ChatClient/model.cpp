@@ -6,7 +6,8 @@
 
 Model::Model(QObject *parent) : QObject(parent)
 {
-
+    _chats = new QList<Group *>();
+    _groupChats = new QList<Group *>();
 }
 
 Model::~Model()
@@ -24,6 +25,18 @@ Model::~Model()
 
         delete _groupChats;
     }
+}
+
+bool Model::isContact(User *user)
+{
+    for (Group *contact: *_chats)
+    {
+        if (user == contact->getMembers()->at(0))
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 const QList<Group *> *Model::chats() const
@@ -160,7 +173,7 @@ void Model::addMessageToGroup(quint32 senderId, quint32 groupId, quint64 time, Q
         }
     }
 
-    for (Group *group: *_chats)
+    for (Group *group: *_groupChats)
     {
         if (group->getId() == groupId)
         {

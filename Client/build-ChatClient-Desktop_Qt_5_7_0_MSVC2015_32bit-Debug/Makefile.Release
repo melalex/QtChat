@@ -1115,6 +1115,8 @@ release\moc_model.cpp: ..\..\..\Qt\5.7\msvc2015\include\QtCore\QObject \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qcontainerfwd.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qobject_impl.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QList \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QMultiHash \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qhash.h \
 		..\ChatClient\model.h \
 		..\..\..\Qt\5.7\msvc2015\bin\moc.exe
 	C:\Qt\5.7\msvc2015\bin\moc.exe $(DEFINES) -D_MSC_VER=1900 -D_WIN32 -IC:/Qt/5.7/msvc2015/mkspecs/win32-msvc2015 -IC:/Chat/Client/ChatClient -IC:/Qt/5.7/msvc2015/include -IC:/Qt/5.7/msvc2015/include/QtWidgets -IC:/Qt/5.7/msvc2015/include/QtGui -IC:/Qt/5.7/msvc2015/include/QtANGLE -IC:/Qt/5.7/msvc2015/include/QtNetwork -IC:/Qt/5.7/msvc2015/include/QtCore -I. ..\ChatClient\model.h -o release\moc_model.cpp
@@ -2732,11 +2734,12 @@ release\model.obj: ..\ChatClient\model.cpp ../ChatClient/model.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qcontainerfwd.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qobject_impl.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QList \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QMultiHash \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qhash.h \
 		../ChatClient/group.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QtGlobal \
 		../ChatClient/user.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QHash \
-		..\..\..\Qt\5.7\msvc2015\include\QtCore\qhash.h \
 		../ChatClient/connectionmenager.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\QTcpSocket \
 		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\qtcpsocket.h \
@@ -3120,6 +3123,7 @@ release\addcontactdialogpresenter.obj: ..\ChatClient\addcontactdialogpresenter.c
 		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\qtcpsocket.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\qabstractsocket.h \
 		../ChatClient/model.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QMultiHash \
 		../ChatClient/group.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QtGlobal \
 		../ChatClient/user.h \
@@ -3367,6 +3371,7 @@ release\contactspresenter.obj: ..\ChatClient\contactspresenter.cpp ../ChatClient
 		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\qrubberband.h \
 		../ChatClient/model.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QList \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QMultiHash \
 		../ChatClient/chatsmodel.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QAbstractTableModel \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QString \
@@ -3390,7 +3395,16 @@ release\contactspresenter.obj: ..\ChatClient\contactspresenter.cpp ../ChatClient
 		..\..\..\Qt\5.7\msvc2015\include\QtGui\qtextcursor.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtGui\qtextformat.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtGui\qpen.h \
-		..\..\..\Qt\5.7\msvc2015\include\QtGui\qtextoption.h
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qtextoption.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\QMessageBox \
+		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\qmessagebox.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\QApplication \
+		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\qapplication.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qcoreapplication.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\qeventloop.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\qdesktopwidget.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qguiapplication.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtGui\qinputmethod.h
 
 release\groupchatdialogpresenter.obj: ..\ChatClient\groupchatdialogpresenter.cpp ../ChatClient/groupchatdialogpresenter.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QObject \
@@ -3578,6 +3592,7 @@ release\chatsmodel.obj: ..\ChatClient\chatsmodel.cpp ../ChatClient/chatsmodel.h 
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QString \
 		../ChatClient/model.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QObject \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QMultiHash \
 		../ChatClient/group.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QtGlobal \
 		../ChatClient/user.h \
@@ -3650,6 +3665,7 @@ release\groupchatsmodel.obj: ..\ChatClient\groupchatsmodel.cpp ../ChatClient/gro
 		../ChatClient/model.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QObject \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QList \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QMultiHash \
 		../ChatClient/group.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QtGlobal
 

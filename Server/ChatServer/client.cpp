@@ -68,6 +68,7 @@ void Client::onReadyRead()
     if (_socket->bytesAvailable() >= _blockSize)
     {
         _blockSize = 0;
+
         quint8 command;
 
         in >> command;
@@ -130,15 +131,17 @@ void Client::onReadyRead()
 
                 case CREATE_GROUP:
                 {
+                    quint32 count;
                     QString name;
                     QList<quint32> members;
                     quint32 userId;
 
                     in >> name;
+                    in >> count;
 
                     members.append(_id);
 
-                    while (!in.atEnd())
+                    for (quint32 i = 0; i < count; i++)
                     {
                         in >> userId;
                         members.append(userId);
@@ -174,6 +177,11 @@ void Client::onReadyRead()
                 signIn(this, login, password);
             }
         }
+    }
+
+    if (_socket->bytesAvailable() >= (int)sizeof(quint16))
+    {
+        onReadyRead();
     }
 }
 
@@ -344,6 +352,7 @@ void Client::newGroup(quint32 groupId, QString name, const QList<quint32> &membe
     out << (quint8)NEW_GROUP;
     out << groupId;
     out << name;
+    out << members.count();
 
     for (quint32 id: members)
     {
@@ -366,7 +375,8 @@ void Client::possibleContactList(QList<User *> *users)
     QDataStream out(&block, QIODevice::WriteOnly);
     out << (quint16)0;
 
-    out << (quint8)NEW_GROUP;
+    out << (quint8)POSSIBLE_CONTACTS_LIST;
+    out << users->count();
 
     for (User *user: *users)
     {

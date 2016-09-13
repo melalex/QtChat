@@ -9,6 +9,8 @@
 
 User *ConnectionMenager::_currentUser = nullptr;
 
+QString lastUsedLogin;
+
 ConnectionMenager::ConnectionMenager(QObject *parent) :
     QObject(parent)
 {
@@ -47,6 +49,7 @@ void ConnectionMenager::onSokReadyRead()
     if (_socket->bytesAvailable() >= _blockSize)
     {
         _blockSize = 0;
+
         quint8 command;
 
         in >> command;
@@ -71,7 +74,7 @@ void ConnectionMenager::onSokReadyRead()
 
                 in >> userId;
 
-                _currentUser->setId(userId);
+                _currentUser = UserCreator::getInstance().createUser(userId, lastUsedLogin);
 
                 emit logged();
             }
@@ -128,14 +131,17 @@ void ConnectionMenager::onSokReadyRead()
             case NEW_GROUP:
             {
                 quint32 groupId;
+                quint32 count;
                 QString name;
                 QList<quint32> members;
 
                 in >> groupId;
                 in >> name;
+                in >> count;
 
                 quint32 memberId;
-                while (!in.atEnd())
+
+                for (quint32 i = 0; i < count; i++)
                 {
                     in >> memberId;
                     members.append(memberId);
@@ -148,10 +154,13 @@ void ConnectionMenager::onSokReadyRead()
             case POSSIBLE_CONTACTS_LIST:
             {
                 quint32 id;
+                quint32 count;
                 QString login;
                 QList<User *> *possibleContactsList = new QList<User *>();
 
-                while (!in.atEnd())
+                in >> count;
+
+                for (quint32 i = 0; i < count; i++)
                 {
                     in >> id;
                     in >> login;
@@ -163,6 +172,11 @@ void ConnectionMenager::onSokReadyRead()
             }
             break;
         }
+    }
+
+    if (_socket->bytesAvailable() >= (int)sizeof(quint16))
+    {
+        onSokReadyRead();
     }
 }
 
@@ -211,7 +225,7 @@ void ConnectionMenager::signUp(QString login, QString password)
 
 void ConnectionMenager::signIn(QString login, QString password)
 {
-    _currentUser = UserCreator::getInstance().createUser(0, login);
+    lastUsedLogin = login;
 
     QByteArray block;
     QDataStream out(&block, QIODevice::WriteOnly);
@@ -244,7 +258,7 @@ void ConnectionMenager::addContact(User *user)
     _socket->write(block);
 }
 
-void ConnectionMenager::createGroupChat(QList<User *> users, QString name)
+void ConnectionMenager::createGroupChat(const QList<User *> &users, QString name)
 {
     QByteArray block;
     QDataStream out(&block, QIODevice::WriteOnly);
@@ -252,6 +266,7 @@ void ConnectionMenager::createGroupChat(QList<User *> users, QString name)
 
     out << (quint8)CREATE_GROUP;
     out << name;
+    out << users.count();
 
     for (User *user: users)
     {

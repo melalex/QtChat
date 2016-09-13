@@ -31,7 +31,7 @@ private:
     ConnectionMenager *_connectionMenager;
     Model *_model;
 
-    QList<User *> *_possibleContacts = nullptr;
+    QList<User *> _possibleContacts;
 };
 
 #endif // ADDCONTACTDIALOGPRESENTER_H

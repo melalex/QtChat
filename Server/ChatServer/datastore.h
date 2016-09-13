@@ -3,8 +3,11 @@
 
 #include <QObject>
 #include <QtSql>
+#include <QPair>
 
 #include "models.h"
+
+extern const QString dialogName;
 
 class DataStore : public QObject
 {
@@ -21,8 +24,7 @@ public:
     void addMessage(quint32 senderId, quint32 groupId, quint64 time, QString text);
     quint32 createGroup(QString name, const QList<quint32> &members);
 
-    QList<Dialog *> *getDialogs(quint32 userId);
-    QList<Group *> *getGroups(quint32 userId);
+    QPair<QList<Dialog *> *, QList<Group *> *> &getGroups(quint32 userId);
 
     QString getUserById(quint32 id);
     QList<Message *> *getMessagesFromGroupWithId(quint32 groupId);
@@ -46,6 +48,9 @@ private:
     QString _selectFromUsersWithIdQuery;
     QString _selectMessagesWithGroupIdQuery;
     QString _selectUsersInGroupQuery;
+    QString _selectUsersInGroupExceptQuery;
+    QString _selectGroupsWithUserQuery;
+    QString _selectGroupNameQuery;
 
     QString _insertToUsersQuery;
     QString _insertToGroupsQuery;

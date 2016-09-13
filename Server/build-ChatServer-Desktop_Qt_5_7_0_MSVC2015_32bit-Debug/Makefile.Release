@@ -311,6 +311,9 @@ release\moc_client.cpp: ..\..\..\Qt\5.7\msvc2015\include\QtCore\QObject \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qcontiguouscache.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qsharedpointer.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qsharedpointer_impl.h \
+		..\ChatServer\models.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QtGlobal \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QString \
 		..\ChatServer\client.h \
 		..\..\..\Qt\5.7\msvc2015\bin\moc.exe
 	C:\Qt\5.7\msvc2015\bin\moc.exe $(DEFINES) -D_MSC_VER=1900 -D_WIN32 -IC:/Qt/5.7/msvc2015/mkspecs/win32-msvc2015 -IC:/Chat/Server/ChatServer -IC:/Qt/5.7/msvc2015/include -IC:/Qt/5.7/msvc2015/include/QtNetwork -IC:/Qt/5.7/msvc2015/include/QtSql -IC:/Qt/5.7/msvc2015/include/QtCore -I. ..\ChatServer\client.h -o release\moc_client.cpp
@@ -555,6 +558,10 @@ release\moc_datastore.cpp: ..\..\..\Qt\5.7\msvc2015\include\QtCore\QObject \
 		..\..\..\Qt\5.7\msvc2015\include\QtSql\qsqlrelationaltablemodel.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtSql\qsqltablemodel.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtSql\qtsqlversion.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QPair \
+		..\ChatServer\models.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QtGlobal \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QString \
 		..\ChatServer\datastore.h \
 		..\..\..\Qt\5.7\msvc2015\bin\moc.exe
 	C:\Qt\5.7\msvc2015\bin\moc.exe $(DEFINES) -D_MSC_VER=1900 -D_WIN32 -IC:/Qt/5.7/msvc2015/mkspecs/win32-msvc2015 -IC:/Chat/Server/ChatServer -IC:/Qt/5.7/msvc2015/include -IC:/Qt/5.7/msvc2015/include/QtNetwork -IC:/Qt/5.7/msvc2015/include/QtSql -IC:/Qt/5.7/msvc2015/include/QtCore -I. ..\ChatServer\datastore.h -o release\moc_datastore.cpp
@@ -715,6 +722,9 @@ release\chatserver.obj: ..\ChatServer\chatserver.cpp ../ChatServer/chatserver.h 
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QObject \
 		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\QTcpSocket \
 		..\..\..\Qt\5.7\msvc2015\include\QtNetwork\qtcpsocket.h \
+		../ChatServer/models.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QtGlobal \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QString \
 		../ChatServer/datastore.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtSql\QtSql \
 		..\..\..\Qt\5.7\msvc2015\include\QtSql\QtSqlDepends \
@@ -894,6 +904,7 @@ release\chatserver.obj: ..\ChatServer\chatserver.cpp ../ChatServer/chatserver.h 
 		..\..\..\Qt\5.7\msvc2015\include\QtSql\qsqlrelationaltablemodel.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtSql\qsqltablemodel.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtSql\qtsqlversion.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QPair \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QDebug \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QDateTime \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QDir
@@ -964,8 +975,10 @@ release\client.obj: ..\ChatServer\client.cpp ../ChatServer/client.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qcontiguouscache.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qsharedpointer.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qsharedpointer_impl.h \
-		C:\Chat\protocol.h \
+		../ChatServer/models.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QtGlobal \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QString \
+		C:\Chat\protocol.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QDateTime \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\qdatetime.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtCore\QDataStream \
@@ -1217,7 +1230,11 @@ release\datastore.obj: ..\ChatServer\datastore.cpp ../ChatServer/datastore.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtWidgets\qcombobox.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtSql\qsqlrelationaltablemodel.h \
 		..\..\..\Qt\5.7\msvc2015\include\QtSql\qsqltablemodel.h \
-		..\..\..\Qt\5.7\msvc2015\include\QtSql\qtsqlversion.h
+		..\..\..\Qt\5.7\msvc2015\include\QtSql\qtsqlversion.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QPair \
+		../ChatServer/models.h \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QtGlobal \
+		..\..\..\Qt\5.7\msvc2015\include\QtCore\QString
 
 release\moc_chatserver.obj: release\moc_chatserver.cpp 
 

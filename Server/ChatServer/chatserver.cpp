@@ -75,8 +75,10 @@ void ChatServer::signIn(Client *client, QString login, QString password)
         _clients.insert(id, client);
         client->loged(id);
 
-        QList<Dialog *> *dialogs = _dataStore->getDialogs(id);
-        QList<Group *> *groups = _dataStore->getGroups(id);
+        QPair<QList<Dialog *> *, QList<Group *> *> pair = _dataStore->getGroups(id);
+
+        QList<Dialog *> *dialogs = pair.first;
+        QList<Group *> *groups = pair.second;
 
         for (Dialog *dialog: *dialogs)
         {
@@ -107,7 +109,10 @@ void ChatServer::getUser(Client *client, quint32 userId)
 
     QString login = _dataStore->getUserById(userId);
 
-    client->newUser(userId, login);
+    if (!login.isEmpty())
+    {
+        client->newUser(userId, login);
+    }
 }
 
 void ChatServer::getMessages(Client *client, quint32 groupId)
@@ -152,7 +157,7 @@ void ChatServer::sendMessage(quint32 senderId, quint32 groupId, QString text)
 
     for (quint32 id: *userIds)
     {
-        if (_clients.contains(id))
+        if (_clients.contains(id) && id != senderId)
         {
             _clients.value(id)->newMessage(senderId, groupId, time, text);
         }
@@ -171,7 +176,7 @@ void ChatServer::addContact(Client *client, quint32 interlocutorId)
     members.append(client->id());
     members.append(interlocutorId);
 
-    quint32 groupId = _dataStore->createGroup("__Dialog__", members); // (ಠ_ಠ)
+    quint32 groupId = _dataStore->createGroup(dialogName, members); // (ಠ_ಠ)
 
     client->newContact(groupId, interlocutorId, interlocutorName);
 

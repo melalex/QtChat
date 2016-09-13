@@ -27,12 +27,6 @@ AddContactDialogPresenter::AddContactDialogPresenter(Model *model, ConnectionMen
 
 AddContactDialogPresenter::~AddContactDialogPresenter()
 {
-    if (_possibleContacts != nullptr)
-    {
-        qDeleteAll(*_possibleContacts);
-        delete _possibleContacts;
-    }
-
     delete _addContactDialog;
 }
 
@@ -58,7 +52,7 @@ void AddContactDialogPresenter::getPossibleContacts(QString loginPart)
 
 void AddContactDialogPresenter::addContact(quint16 index)
 {
-    User *user = _possibleContacts->at(index);
+    User *user = _possibleContacts.at(index);
 
     _model->createChat(user);
 
@@ -67,15 +61,15 @@ void AddContactDialogPresenter::addContact(quint16 index)
 
 void AddContactDialogPresenter::possibleContacts(QList<User *> *users)
 {
-    if (_possibleContacts != users)
+    _possibleContacts.clear();
+
+    for (User *user: *users)
     {
-        if (_possibleContacts != nullptr)
+        if (!_model->isContact(user) && ConnectionMenager::currentUser() != user)
         {
-            qDeleteAll(*_possibleContacts);
+            _possibleContacts.append(user);
         }
-
-        _possibleContacts = users;
-
-        emit setPossibleContacts(users);
     }
+
+    emit setPossibleContacts(&_possibleContacts);
 }

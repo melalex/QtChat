@@ -107,10 +107,13 @@ void PossibleContactsModel::setPossibleContacts(const QList<User *> *users)
 {
     clear();
 
-    insertRows(0, users->count());
-
-    for (int i = 0; i < users->count(); i++)
+    if (users->count() > 0)
     {
-        setData(createIndex(i, 0), users->at(i)->getLogin());
+        insertRows(0, users->count());
+
+        for (int i = 0; i < users->count(); i++)
+        {
+            setData(createIndex(i, 0), users->at(i)->getLogin());
+        }
     }
 }

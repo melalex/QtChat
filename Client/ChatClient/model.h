@@ -17,6 +17,8 @@ public:
     explicit Model(QObject *parent = 0);
     ~Model();
 
+    bool isContact(User *user);
+
     const QList<Group *> *chats() const;
     const QList<Group *> *groupChats() const;
 

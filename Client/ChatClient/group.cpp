@@ -13,7 +13,10 @@ Group::Group(quint32 id, QString name, QObject *parent) :
 
 Group::~Group()
 {
-   qDeleteAll(*_messages);
+   if (_messages)
+   {
+       qDeleteAll(*_messages);
+   }
 
    delete _members;
    delete _messages;
@@ -60,6 +63,11 @@ void Group::removeMember(User *user)
 
 void Group::addMessage(Message *message)
 {
+    if (!_messages)
+    {
+        _messages = new QList<Message *>();
+    }
+
     message->setGroup(this);
     _messages->append(message);
 
