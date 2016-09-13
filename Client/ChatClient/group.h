@@ -13,11 +13,13 @@ class Group : public QObject
     Q_OBJECT
 
 public:
-    explicit Group(quint32 id, QString name, QList<User *> *members, QObject *parent = 0, QList<Message *> *messages = new QList<Message *>());
+    explicit Group(quint32 id, QString name, QObject *parent = 0);
     ~Group();
 
     quint32 getId() const;
     QString getName() const;
+
+    bool isNoMessages();
 
     const QList<User *> *getMembers() const;
     const QList<Message *> *getMessages() const;

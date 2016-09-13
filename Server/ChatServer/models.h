@@ -17,6 +17,13 @@ struct Group
     QList<quint32> members;
 };
 
+struct Dialog
+{
+    quint32 id;
+    quint32 interlocutorId;
+    QString interlocutorName;
+};
+
 struct Message
 {
     quint32 senderId;

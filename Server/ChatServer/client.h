@@ -4,6 +4,8 @@
 #include <QObject>
 #include <QTcpSocket>
 
+#include "models.h"
+
 class Client : public QObject
 {
     Q_OBJECT
@@ -21,16 +23,15 @@ public:
 
     void newMessage(quint32 senderId, quint32 groupId, quint64 time, QString text);
     void newUser(quint32 userId, QString login);
-    void newContact(quint32 groupId, quint32 interlocutorId);
+    void newContact(quint32 groupId, quint32 interlocutorId, QString interlocutorName);
     void newGroup(quint32 groupId, QString name, const QList<quint32> &members);
 
-    void possibleContactList();
+    void possibleContactList(QList<User *> *users);
 
 signals:
     void signUp(Client *client, QString login, QString password);
     void signIn(Client *client, QString login, QString password);
 
-    void getGroups(Client *client);
     void getUser(Client *client, quint32 userId);
     void getMessages(Client *client, quint32 groupId);
     void getPossibleContacts(Client *client, QString loginPart);

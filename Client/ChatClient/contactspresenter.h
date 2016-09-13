@@ -24,6 +24,8 @@ public:
 signals:
 
 public slots:
+    void connectionFail(QString socketError);
+
     void addContact();
     void removeContact(quint16 index);
 

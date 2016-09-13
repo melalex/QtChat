@@ -13,6 +13,8 @@
 #include <QHeaderView>
 #include <QInputDialog>
 #include <QString>
+#include <QMessageBox>
+#include <QApplication>
 
 ContactsPresenter::ContactsPresenter(QObject *parent) : QObject(parent)
 {
@@ -77,6 +79,18 @@ ChatDialogPresenter *ContactsPresenter::getChatDialogPresenter()
     return _chatDialogPresenter;
 }
 
+void ContactsPresenter::connectionFail(QString socketError)
+{
+    QMessageBox msgBox;
+    msgBox.setText(socketError);
+    msgBox.setIcon(QMessageBox::Critical);
+    msgBox.exec();
+
+    _contacts->close();
+    qApp->quit();
+    qApp->exit();
+}
+
 void ContactsPresenter::addContact()
 {
     getAddContactDialog()->showWindow();
@@ -95,12 +109,12 @@ void ContactsPresenter::removeContact(quint16 index)
 void ContactsPresenter::createGroup(QList<quint16> *indexes)
 {
     User *user = nullptr;
-    QList<User *> *users = new QList<User *>();
+    QList<User *> users;
 
     for (quint16 index : *indexes)
     {
         user = _model->chats()->at(index)->getMembers()->at(0);
-        users->append(user);
+        users.append(user);
     }
 
     bool ok;
@@ -127,12 +141,26 @@ void ContactsPresenter::leaveGroup(quint16 index)
 
 void ContactsPresenter::openChat(quint16 index)
 {
-    getChatDialogPresenter()->setGroup(_model->chats()->at(index));
+    Group *group = _model->chats()->at(index);
+
+    if (group->isNoMessages())
+    {
+        _connectionMenager->getMessages(group->getId());
+    }
+
+    getChatDialogPresenter()->setGroup(group);
     getChatDialogPresenter()->showWindow();
 }
 
 void ContactsPresenter::openGroupChat(quint16 index)
 {
-    getGroupChatDialogPresenter()->setGroup(_model->groupChats()->at(index));
+    Group *group = _model->groupChats()->at(index);
+
+    if (group->isNoMessages())
+    {
+        _connectionMenager->getMessages(group->getId());
+    }
+
+    getGroupChatDialogPresenter()->setGroup(group);
     getGroupChatDialogPresenter()->showWindow();
 }

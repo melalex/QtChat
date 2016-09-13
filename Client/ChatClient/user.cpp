@@ -45,7 +45,7 @@ User* UserCreator::createUser(quint32 id, QString login)
 
     if (_usersPool.contains(id))
     {
-        result = _usersPool.take(id);
+        result = _usersPool.value(id);
     }
     else
     {
@@ -58,5 +58,10 @@ User* UserCreator::createUser(quint32 id, QString login)
 
 User* UserCreator::userById(quint32 id)
 {
-    return _usersPool.take(id);
+    return _usersPool.value(id);
+}
+
+bool UserCreator::isContains(quint32 id)
+{
+    return _usersPool.contains(id);
 }

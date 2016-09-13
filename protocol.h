@@ -8,7 +8,6 @@ enum Request : quint8
     SIGN_UP,
     SIGN_IN,
 
-    GET_GROUPS,
     GET_USER,
     GET_MESSAGES,
     GET_POSSIBLE_CONTACTS,

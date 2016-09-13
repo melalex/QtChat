@@ -40,28 +40,20 @@ void Model::setConnectionMenager(ConnectionMenager *connectionMenager)
 {
    _connectionMenager = connectionMenager;
 
-   _chats = _connectionMenager->getChats();
-   _groupChats = _connectionMenager->getGroupChats();
-
-   for (Group *group : *_chats)
-   {
-        connect(group, SIGNAL(messageAdded(Message*)), _connectionMenager, SLOT(sendMessage(Message*)));
-   }
-
-   for (Group *group : *_groupChats)
-   {
-        connect(group, SIGNAL(messageAdded(Message*)), _connectionMenager, SLOT(sendMessage(Message*)));
-   }
+   connect(_connectionMenager,
+           SIGNAL(addUser(quint32,QString)),
+           this,
+           SLOT(addUser(quint32,QString)));
 
    connect(_connectionMenager,
-           SIGNAL(addChat(Group*)),
+           SIGNAL(addChat(quint32,quint32,QString)),
            this,
-           SLOT(addChat(Group*)));
+           SLOT(addChat(quint32,quint32,QString)));
 
    connect(_connectionMenager,
-           SIGNAL(addGroupChat(Group*)),
+           SIGNAL(addGroupChat(quint32,QString,QList<quint32>)),
            this,
-           SLOT(addGroupChat(Group*)));
+           SLOT(addGroupChat(quint32,QString,QList<quint32>)));
 
    connect(_connectionMenager,
            SIGNAL(addMessageToGroup(quint32,quint32,quint64,QString)),
@@ -71,36 +63,61 @@ void Model::setConnectionMenager(ConnectionMenager *connectionMenager)
 
 void Model::createChat(User *user)
 {
-    QList<User *> *list = new QList<User *>();
-
-    list->append(user);
-
-    Group *group = new Group(0, user->getLogin(), list);
-
-    addChat(group);
+    _connectionMenager->addContact(user);
 }
 
-void Model::createGroupChat(QString name, QList<User *> *members)
+void Model::createGroupChat(QString name, const QList<User *> &members)
 {
-    addGroupChat(new Group(0, name, members));
+    _connectionMenager->createGroupChat(members, name);
 }
 
-void Model::addChat(Group *chat)
+void Model::addUser(quint32 id, QString login)
 {
-    _chats->append(chat);
+    User *user = UserCreator::getInstance().createUser(id, login);
 
-    connect(chat, SIGNAL(messageAdded(Message*)), _connectionMenager, SLOT(sendMessage(Message*)));
-
-    emit chatAdded(chat);
+    for (Group *group: _mapUsersToGroups.values(id))
+    {
+        group->addMember(user);
+    }
 }
 
-void Model::addGroupChat(Group *chat)
+void Model::addChat(quint32 groupId, quint32 interlocutorId, QString interlocutorName)
 {
-    _groupChats->append(chat);
+    Group *group = new Group(groupId, interlocutorName);
+    User *interlocutor = UserCreator::getInstance().createUser(interlocutorId, interlocutorName);
 
-    connect(chat, SIGNAL(messageAdded(Message*)), _connectionMenager, SLOT(sendMessage(Message*)));
+    group->addMember(interlocutor);
 
-    emit groupChatAdded(chat);
+    _chats->append(group);
+
+    connect(group, SIGNAL(messageAdded(Message*)), _connectionMenager, SLOT(sendMessage(Message*)));
+
+    emit chatAdded(group);
+}
+
+void Model::addGroupChat(quint32 groupId, QString name, const QList<quint32> &members)
+{
+    Group *group = new Group(groupId, name);
+    UserCreator &userCreator = UserCreator::getInstance();
+
+    for (quint32 id: members)
+    {
+        if (userCreator.isContains(id))
+        {
+            group->addMember(userCreator.userById(id));
+        }
+        else
+        {
+            _connectionMenager->getUserById(id);
+            _mapUsersToGroups.insert(id, group);
+        }
+    }
+
+    _groupChats->append(group);
+
+    connect(group, SIGNAL(messageAdded(Message*)), _connectionMenager, SLOT(sendMessage(Message*)));
+
+    emit groupChatAdded(group);
 }
 
 void Model::removeChat(quint16 index)
@@ -111,7 +128,7 @@ void Model::removeChat(quint16 index)
 
     emit chatRemoved(index);
 
-    _connectionMenager->removeContact(chat);
+    _connectionMenager->liveGroup(chat);
 
     delete chat;
 }
@@ -124,7 +141,7 @@ void Model::removeGroupChat(quint16 index)
 
     emit groupChatRemoved(index);
 
-    _connectionMenager->removeGroupChat(chat);
+    _connectionMenager->liveGroup(chat);
 
     delete chat;
 }

@@ -32,9 +32,12 @@ void ChatDialogPresenter::setGroup(Group *group)
 
     _chat->setInterlocutor(_group->getName());
 
-    for (Message *message : *_group->getMessages())
+    if (!_group->isNoMessages())
     {
-        _chat->printMessage(message->toString());
+        for (Message *message : *_group->getMessages())
+        {
+            _chat->printMessage(message->toString());
+        }
     }
 }
 

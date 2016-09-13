@@ -4,10 +4,11 @@
 #include "user.h"
 #include "message.h"
 
-Group::Group(quint32 id, QString name, QList<User *> *members, QObject *parent,  QList<Message *> *messages) :
-    QObject(parent), _id(id), _name(name), _members(members), _messages(messages)
+Group::Group(quint32 id, QString name, QObject *parent) :
+    QObject(parent), _id(id), _name(name)
 {
-
+    _members = new QList<User *>();
+    _messages = nullptr;
 }
 
 Group::~Group()
@@ -16,6 +17,11 @@ Group::~Group()
 
    delete _members;
    delete _messages;
+}
+
+bool Group::isNoMessages()
+{
+    return _messages == nullptr;
 }
 
 quint32 Group::getId() const

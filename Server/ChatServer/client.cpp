@@ -76,12 +76,6 @@ void Client::onReadyRead()
         {
             switch(command)
             {
-                case GET_GROUPS:
-                {
-                    emit getGroups(this);
-                }
-                break;
-
                 case GET_USER:
                 {
                    quint32 userId;
@@ -136,7 +130,21 @@ void Client::onReadyRead()
 
                 case CREATE_GROUP:
                 {
+                    QString name;
+                    QList<quint32> members;
+                    quint32 userId;
 
+                    in >> name;
+
+                    members.append(_id);
+
+                    while (!in.atEnd())
+                    {
+                        in >> userId;
+                        members.append(userId);
+                    }
+
+                    emit createGroup(this, name, members);
                 }
                 break;
 
@@ -264,28 +272,112 @@ void Client::newMessage(quint32 senderId, quint32 groupId, quint64 time, QString
     qDebug() << "["  << QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm") << "]"
              << "Client with id " << _id << " get message from user with id " << senderId
              << "to group with id " << groupId;
+
+    QByteArray block;
+    QDataStream out(&block, QIODevice::WriteOnly);
+    out << (quint16)0;
+
+    out << (quint8)NEW_MESSAGE;
+    out << senderId;
+    out << groupId;
+    out << time;
+    out << text;
+
+    out.device()->seek(0);
+
+    out << (quint16)(block.size() - sizeof(quint16));
+
+    _socket->write(block);
+
 }
 
 void Client::newUser(quint32 userId, QString login)
 {
     qDebug() << "["  << QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm") << "]"
              << "Client with id " << _id << " get user with id " << userId << " and login " << login;
+
+    QByteArray block;
+    QDataStream out(&block, QIODevice::WriteOnly);
+    out << (quint16)0;
+
+    out << (quint8)NEW_USER;
+    out << userId;
+    out << login;
+
+    out.device()->seek(0);
+
+    out << (quint16)(block.size() - sizeof(quint16));
+
+    _socket->write(block);
 }
 
-void Client::newContact(quint32 groupId, quint32 interlocutorId)
+void Client::newContact(quint32 groupId, quint32 interlocutorId, QString interlocutorName)
 {
     qDebug() << "["  << QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm") << "]"
              << "Client with id " << _id << " get new conntact with user with id " << interlocutorId;
+
+    QByteArray block;
+    QDataStream out(&block, QIODevice::WriteOnly);
+    out << (quint16)0;
+
+    out << (quint8)NEW_CONTACT;
+    out << groupId;
+    out << interlocutorId;
+    out << interlocutorName;
+
+    out.device()->seek(0);
+
+    out << (quint16)(block.size() - sizeof(quint16));
+
+    _socket->write(block);
 }
 
 void Client::newGroup(quint32 groupId, QString name, const QList<quint32> &members)
 {
     qDebug() << "["  << QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm") << "]"
              << "Client with id " << _id << " get new group with id " << groupId << " and name " << name;
+
+    QByteArray block;
+    QDataStream out(&block, QIODevice::WriteOnly);
+    out << (quint16)0;
+
+    out << (quint8)NEW_GROUP;
+    out << groupId;
+    out << name;
+
+    for (quint32 id: members)
+    {
+        out << id;
+    }
+
+    out.device()->seek(0);
+
+    out << (quint16)(block.size() - sizeof(quint16));
+
+    _socket->write(block);
 }
 
-void Client::possibleContactList()
+void Client::possibleContactList(QList<User *> *users)
 {
     qDebug() << "["  << QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm") << "]"
              << "Client with id " << _id << " get possible contactslist";
+
+    QByteArray block;
+    QDataStream out(&block, QIODevice::WriteOnly);
+    out << (quint16)0;
+
+    out << (quint8)NEW_GROUP;
+
+    for (User *user: *users)
+    {
+        out << user->id;
+        out << user->login;
+    }
+
+    out.device()->seek(0);
+
+    out << (quint16)(block.size() - sizeof(quint16));
+
+    _socket->write(block);
+
 }

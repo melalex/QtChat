@@ -4,6 +4,10 @@
 #include <QTcpServer>
 #include <QHash>
 
+//TODO: Validation
+//TODO: Password hashing
+//TODO: toInt() to toUInt
+
 class Client;
 class DataStore;
 
@@ -24,7 +28,6 @@ private slots:
     void signUp(Client *client, QString login, QString password);
     void signIn(Client *client, QString login, QString password);
 
-    void getGroups(Client *client);
     void getUser(Client *client, quint32 userId);
     void getMessages(Client *client, quint32 groupId);
     void getPossibleContacts(Client *client, QString loginPart);

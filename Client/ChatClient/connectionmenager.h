@@ -27,12 +27,10 @@ public:
     void addContact(User *user);
     void createGroupChat(QList<User *> users, QString name);
 
-    void removeContact(Group *chat);
-    void removeGroupChat(Group *chat);
+    void liveGroup(Group *chat);
 
-    QList<Group *> *getChats();
-    QList<Group *> *getGroupChats();
-
+    void getUserById(quint32 id);
+    void getMessages(quint32 groupId);
     void getPossibleContacts(QString loginPart);
 
 public slots:
@@ -49,8 +47,9 @@ signals:
 
     void possibleContacts(QList<User *> *users);
 
-    void addChat(Group *chat);
-    void addGroupChat(Group *chat);
+    void addUser(quint32 id, QString login);
+    void addChat(quint32 groupId, quint32 interlocutorId, QString interlocutorName);
+    void addGroupChat(quint32 groupId, QString name, const QList<quint32> &members);
 
     void addMessageToGroup(quint32 senderId, quint32 groupId, quint64 time, QString text);
 
